@@ -16,7 +16,7 @@
 						</li>
 						<li class="nav-label">Research</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{ url('research/' . $page='add-research-task') }}"><i class="fe fe-database"></i><span class="sidemenu-label">Add Research Task</span></a>
+							<a class="nav-link" href="{{ url('research/' . $page='research-task') }}"><i class="fe fe-database"></i><span class="sidemenu-label">Research Task</span></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url('research/' . $page='funders') }}"><i class="fe fe-mail"></i><span class="sidemenu-label">Funder List</span></a>
@@ -26,7 +26,7 @@
 						</li>
 						<li class="nav-label">Mady’Skincare</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('skincare/'. $page='add-formulation')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Formulation</span></a>
+							<a class="nav-link" href="{{url('skincare/'. $page='formulation')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Formulation</span></a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link with-sub" href=""><i class="fe fe-package"></i><span class="sidemenu-label">Inventory</span><i class="angle fe fe-chevron-right"></i></a>

@@ -16,7 +16,7 @@ class FormulationController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Formulation/formulation-create');
+        return \View::make('mady-skincare.Formulation.formulation-list');
         
     }
 
@@ -27,7 +27,7 @@ class FormulationController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare.Formulation.formulation-create');
     }
 
     /**
@@ -104,5 +104,10 @@ class FormulationController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datatable()
+    {
+        return \response()->json(Formulation::orderBy('id')->get() , 200);
+        # code...
     }
 }

@@ -17,9 +17,7 @@ class TrainingFormController extends Controller
     public function index()
     {
         // return \View::make('research/training-form');
-        return \View::make('research.TrainingForm.training-form-create');
-
-        
+        return \View::make('research.TrainingForm.training-form-list'); 
     }
 
     /**
@@ -29,7 +27,7 @@ class TrainingFormController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('research.TrainingForm.training-form-create'); 
     }
 
     /**
@@ -108,5 +106,10 @@ class TrainingFormController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datatable()
+    {
+        return \response()->json(TrainingForm::orderBy('id')->get() , 200);
+        # code...
     }
 }

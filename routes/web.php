@@ -39,16 +39,18 @@ Route::resource('/employees' , 'Rback\Users\EmployeeController');
 
 //********************* Research ******************//
 Route::group(['prefix' => 'research'], function () {
-	Route::resource('/add-research-task' , 'Research\ResearchController');
-
+	Route::get('/research-task/datatable' , 'Research\ResearchController@datatable');
+	Route::resource('/research-task' , 'Research\ResearchController');
+	Route::get('/funders-datatable' , 'Research\FunderController@datatable');
 	Route::resource('/funders' , 'Research\FunderController');
-
+	Route::get('/training-form/datatable' , 'Research\TrainingFormController@datatable');
 	Route::resource('/training-form' , 'Research\TrainingFormController');
 });
 
 //********************* Mady SkinCare ******************//
 Route::group(['prefix' => 'skincare'], function () {
-	Route::resource('/add-formulation', 'Skincare\FormulationController');
+	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
+	Route::resource('/formulation', 'Skincare\FormulationController');
 
 });	
 Route::group(['prefix' => 'skincare'], function () {

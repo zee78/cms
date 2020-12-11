@@ -128,7 +128,7 @@ function form_Create(formData) {
 var createFormData = new FormData (formData);
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/add-formulation',
+        url: '/skincare/formulation',
         type: 'POST',
         data: createFormData,
         contentType: false,

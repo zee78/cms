@@ -43,7 +43,7 @@ $(document).ready(()=>{
                     required: true,
                     // lettersonly: true
                 },
-                type: {
+                form_type: {
                     required: true,
                     // lettersonly: true
                 },
@@ -76,7 +76,7 @@ $(document).ready(()=>{
                     required: "Please enter title",
 
                 } ,
-                type: {
+                form_type: {
                     required: "Please select  type",
 
                 } ,

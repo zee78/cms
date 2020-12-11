@@ -16,7 +16,7 @@ class FunderController extends Controller
      */
     public function index()
     {
-        return \View::make('research/Funders/funder-create');
+        return \View::make('research/Funders/funder-list');
         
     }
 
@@ -27,7 +27,7 @@ class FunderController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('research/Funders/funder-create');
     }
 
     /**
@@ -102,5 +102,10 @@ class FunderController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datatable()
+    {
+        return \response()->json(Funder::orderBy('id')->get() , 200);
+        # code...
     }
 }

@@ -16,7 +16,7 @@ class ResearchController extends Controller
      */
     public function index()
     {
-        return \View::make('research.ResearchTask.research-task-create');
+        return \View::make('research.ResearchTask.research-task-list');
     }
 
     /**
@@ -26,7 +26,7 @@ class ResearchController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('research.ResearchTask.research-task-create');
     }
 
     /**
@@ -55,7 +55,7 @@ class ResearchController extends Controller
         $researchModel->task_status = $validatedData['status'];
         $researchModel->status = '1';
         $researchModel->created_by = Auth::id();
-
+        
         if ($researchModel->save()) {
             return response()->json(['status'=>'true' , 'message' => 'Research data add successfully'] , 200);
         }else{
@@ -109,5 +109,10 @@ class ResearchController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function datatable()
+    {
+        return \response()->json(Research::orderBy('id')->get() , 200);
+        # code...
     }
 }
