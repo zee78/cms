@@ -13,11 +13,11 @@
 <!-- Page Header -->
 <div class="page-header">
 	<div>
-		<h2 class="main-content-title tx-24 mg-b-5">Add Batch</h2>
+		<h2 class="main-content-title tx-24 mg-b-5">Add Glassware</h2>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 			<li class="breadcrumb-item"><a href="#">Inventory</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Add Batch</li>
+			<li class="breadcrumb-item active" aria-current="page">Add Glassware</li>
 		</ol>
 	</div>
 	
@@ -31,38 +31,52 @@
 		<div class="card custom-card">
 			<div class="card-body">
 				<div>
-					<h6 class="card-title mb-1">Add Batch</h6>
+					<h6 class="card-title mb-1">Add Glassware</h6>
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formGlasswareCreate">
 						@csrf
 						<div class="">
 							<div class="row">
 								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Batch Code: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="batch_code" placeholder="Enter Batch Code" required="" type="text">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
+									<label class="form-label">Glassware Name: <span class="tx-danger">*</span></label>
+									<input class="form-control" name="glassware_name" placeholder="Enter Glassware Name" required="" type="text">
 								</div>
+									
+								</div>
+								
 								<!-- ****************** employee last name *************** -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Product Name: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="product_name" placeholder="Enter Product Name" required="" type="text">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
+									<label class="form-label">Total Stock in Hand: <span class="tx-danger">*</span></label>
+									<input class="form-control" name="stock_in_hand" placeholder="Enter Stock in Hand" required="" type="text">
 								</div>
+							    </div>
+
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Batch Size: <span class="tx-danger">*</span></label>
-									<input type="text" name="batch_size" class="form-control" required="">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
+									<label class="form-label">Breakage: <span class="tx-danger">*</span></label>
+									<input type="text" name="breakge" class="form-control" required="">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Total Quantity: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="total_quantity" id="total_quantity" placeholder="Enter Total Quantity" required="" type="text">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
+									<label class="form-label">Responsible Person: <span class="tx-danger">*</span></label>
+									<input class="form-control" name="responsible_person" id="responsible_person" placeholder="Enter Name of Responsible Person" required="" type="text">
 								</div>
+							    </div>
 							</div>
-							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Batch</button>
+							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Glassware</button>
 						</div>
 					</form>
 				</div>
@@ -88,5 +102,5 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employee-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Inventory/Glassware/glassware-create.js')}}"></script>
 @endsection

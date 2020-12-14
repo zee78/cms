@@ -28,23 +28,23 @@ class AdminController extends Controller
     }
 
     public function add_chemicals(Request $request){
-        return \View::make('mady-skincare/add-chemicals');
+        // return \View::make('mady-skincare/add-chemicals');
     }
 
     public function add_glassware(Request $request){
-        return \View::make('mady-skincare/add-glassware');
+        // return \View::make('mady-skincare/add-glassware');
     }
 
     public function add_equipment(Request $request){
-        return \View::make('mady-skincare/add-equipment');
+        // return \View::make('mady-skincare/add-equipment');
     }
 
     public function add_batch(Request $request){
-        return \View::make('mady-skincare/add-batch');
+        // return \View::make('mady-skincare/add-batch');
     }
 
     public function add_sold_status(Request $request){
-        return \View::make('mady-skincare/add-sold-status');
+        // return \View::make('mady-skincare/add-sold-status');
     }
 
     public function add_vendors(Request $request){

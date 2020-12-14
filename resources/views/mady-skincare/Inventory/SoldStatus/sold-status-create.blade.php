@@ -35,40 +35,56 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formSoldStatusCreate">
 						@csrf
 						<div class="">
 							<div class="row">
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
 									<label class="form-label">Product Name: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="product_name" placeholder="Enter Product Name" required="" type="text">
 								</div>
+									
+								</div>
+								
 								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Date: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee last name *************** -->
 								
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Packs Sold: <span class="tx-danger">*</span></label>
 									<input type="text" name="packs_sold" class="form-control" required="">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Packs in Hand: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="packs_in_hand" id="packs_in_hand" placeholder="Enter Packs in Hand" required="" type="text">
 								</div>
+						    	</div>
 							</div>
 							<div class="row">
 								<!-- ****************** employee phone number *************** -->
-								<div class="col-lg-12 form-group">
+								<div class="col-lg-12 col-md-12">
+
+								<div class="form-group">
 									<label class="form-label">Amount Received: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="amount_received" id="amount_received" placeholder="Enter Received Amount" required="" type="text">
 								</div>
+							    </div>
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Sold Status</button>
 						</div>
@@ -96,5 +112,5 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employee-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Inventory/SoldStatus/sold-status-create.js') }}"></script>
 @endsection

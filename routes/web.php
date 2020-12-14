@@ -49,16 +49,21 @@ Route::group(['prefix' => 'research'], function () {
 //********************* Mady SkinCare ******************//
 Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/add-formulation', 'Skincare\FormulationController');
+	Route::resource('/inventory/batch', 'Skincare\Inventory\BatchController');
+	Route::resource('/inventory/chemical', 'Skincare\Inventory\ChemicalController');
+	Route::resource('/inventory/equipment', 'Skincare\Inventory\EquipmentController');
+	Route::resource('/inventory/glasssware', 'Skincare\Inventory\GlassWareController');
+	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
 
 });	
 Route::group(['prefix' => 'skincare'], function () {
 	// Route::get('/add-formulation', 'AdminController@add_formulation');
-	Route::get('/add-chemicals', 'AdminController@add_chemicals');
-	Route::get('/add-glassware', 'AdminController@add_glassware');
-	Route::get('/add-equipment', 'AdminController@add_equipment');
-	Route::get('/add-batch', 'AdminController@add_batch');
-	Route::get('/add-sold-status', 'AdminController@add_sold_status');
-	Route::get('/add-vendors', 'AdminController@add_vendors');
+	// Route::get('/add-chemicals', 'AdminController@add_chemicals');
+	// Route::get('/add-glassware', 'AdminController@add_glassware');
+	// Route::get('/add-equipment', 'AdminController@add_equipment');
+	// Route::get('/add-batch', 'AdminController@add_batch');
+	// Route::get('/add-sold-status', 'AdminController@add_sold_status');
+	// Route::get('/add-vendors', 'AdminController@add_vendors');
 });
 // Route::get('/{page}', 'AdminController@index');
 Auth::routes();

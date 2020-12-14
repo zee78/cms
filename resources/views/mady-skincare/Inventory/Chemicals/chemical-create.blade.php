@@ -35,70 +35,100 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formChemicalCreate">
 						@csrf
 						<div class="">
 							<div class="row">
 								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
 									<label class="form-label">Chemical Name: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="chemical_name" placeholder="Enter Chemical Name" required="" type="text">
 								</div>
+									
+								</div>
 								<!-- ****************** employee last name *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Total Stock in Hand: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="stock_in_hand" placeholder="Enter Stock in Hand" required="" type="text">
 								</div>
+							    </div>
 								
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Unit Cost: <span class="tx-danger">*</span></label>
 									<input type="text" name="unit_cost" class="form-control" required="">
 								</div>
+					    		</div>
 								<!-- ****************** employee phone number *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Quantity Used: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="quantity_used" id="quantity_used" placeholder="Enter Quantity Used" required="" type="text">
 								</div>
+							    </div>
 								
 							</div>
 							<div class="row">
 								<!-- ****************** employee confirm password *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Usage Details: <span class="tx-danger">*</span></label>
 									<textarea class="form-control" rows="3" cols="10" name="usage_detail"></textarea>
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Quantity Remaining: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="quantity_remaining" id="quantity_remaining" placeholder="Enter Quantity Remaining" required="" type="text">
 								</div>
+							    </div>
 							</div>
 							<div class="row">
 								<!-- ***************** eployee roles  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Safety Stock Level: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="stock_level" id="stock_level" placeholder="Safety Stock Level" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee date of birth *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Total Cost of Chemicals Used: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="cost_chemicals_used" placeholder="Total Cost of Chemicals Used" type="text" required="">
 								</div>
+						     	</div>
 								
 							</div>
 							<div class="row">
 								<!-- ***************** eployee roles  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Wastage Amount: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="wastage_amount" id="wastage_amount" placeholder="Enter Wastage Amount" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee date of birth *************** -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Cost of Wastage: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="wastage_cost" placeholder="Cost of Wastage" type="text" required="">
 								</div>
+							    </div>
 								
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Chemicals</button>
@@ -129,5 +159,6 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employee-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Inventory/Chemicals/chemical-create.js')}}"></script>
+
 @endsection

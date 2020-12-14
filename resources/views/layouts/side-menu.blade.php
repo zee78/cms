@@ -32,19 +32,19 @@
 							<a class="nav-link with-sub" href=""><i class="fe fe-package"></i><span class="sidemenu-label">Inventory</span><i class="angle fe fe-chevron-right"></i></a>
 							<ul class="nav-sub">
 								<li class="nav-sub-item">
-									<a class="nav-sub-link" href="{{ url('skincare/' . $page='add-chemicals') }}">Chemicals</a>
+									<a class="nav-sub-link" href="{{ url('skincare/' . $page='inventory/chemical') }}">Chemicals</a>
 								</li>
 								<li class="nav-sub-item">
-									<a class="nav-sub-link" href="{{ url('skincare/' . $page='add-glassware') }}">Glassware</a>
+									<a class="nav-sub-link" href="{{ url('skincare/' . $page='inventory/glasssware') }}">Glassware</a>
 								</li>
 								<li class="nav-sub-item">
-									<a class="nav-sub-link" href="{{ url('skincare/' . $page='add-equipment') }}">Equipment</a>
+									<a class="nav-sub-link" href="{{ url('skincare/' . $page='inventory/equipment') }}">Equipment</a>
 								</li>
 								<li class="nav-sub-item">
-									<a class="nav-sub-link" href="{{ url('skincare/' . $page='add-batch') }}">Batch</a>
+									<a class="nav-sub-link" href="{{ url('skincare/' . $page='inventory/batch') }}">Batch</a>
 								</li>
 								<li class="nav-sub-item">
-									<a class="nav-sub-link" href="{{ url('skincare/' . $page='add-sold-status') }}">Sold Status</a>
+									<a class="nav-sub-link" href="{{ url('skincare/' . $page='inventory/soldstatus') }}">Sold Status</a>
 								</li>
 							</ul>
 						</li>
