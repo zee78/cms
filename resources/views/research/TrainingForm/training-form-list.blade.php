@@ -18,7 +18,7 @@
 							</ol>
 						</div>
 						<div class="btn btn-list">
-							<a class="btn ripple btn-primary" href="#"><i class="fe fe-external-link"></i> Export</a>
+							<!-- <a class="btn ripple btn-primary" href="#"><i class="fe fe-external-link"></i> Export</a>
 							<a class="btn ripple btn-secondary" href="#"><i class="fe fe-download"></i> Download</a>
 							<a class="btn ripple btn-info" href="#"><i class="fe fe-help-circle"></i> Help</a>
 							<a class="btn ripple btn-danger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -31,8 +31,8 @@
 								<a class="dropdown-item" href="#"><i class="fe fe-folder-plus mr-2"></i>Save</a>
 								<a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i>Remove</a>
 								<a class="dropdown-item" href="#"><i class="fe fe-settings mr-2"></i>More</a>
-							</div>
-							<a class="btn ripple btn-secondary" href="{{ url('/employees/create') }}"><i class="fe fe-download"></i> Add New User</a>
+							</div> -->
+							<a class="btn ripple btn-secondary" href="{{ url('research/training-form/create') }}"><i class="fe fe-download"></i> Add New Training Form</a>
 						</div>
 					</div>
 					<!-- End Page Header -->
@@ -44,20 +44,21 @@
 							<div class="card custom-card">
 								<div class="card-body">
 									<div>
-										<h6 class="card-title mb-1">Employee</h6>
+										<h6 class="card-title mb-1">Training Form</h6>
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
-										<table class="table" id="tblEmployee">
+										<table class="table" id="tblTrainingForm">
 											<thead>
 												<tr>
 													<th class="wd-20p">Sr#</th>
-													<th class="wd-25p">Name</th>
-													<th class="wd-20p">Email</th>
-													<th class="wd-20p">Contact</th>
-													<th class="wd-20p">Date of Birth</th>
-													<th class="wd-20p">Address</th>
-													
+													<th class="wd-25p">Title</th>
+													<th class="wd-25p">Type</th>
+													<th class="wd-25p">Date</th>
+													<th class="wd-25p">Speaker</th>
+													<th class="wd-20p">Number Of Participants</th>
+													<th class="wd-25p">Total Amount Received</th>
+													<th class="wd-25p">Total Amount Spent</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -91,6 +92,6 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employees-list.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/Research/TrainingForm/training-form-list.js')}}"></script>
 
 @endsection

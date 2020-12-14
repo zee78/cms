@@ -111,7 +111,7 @@
 								
 								
 							</div>
-							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Funders</button>
+							<button class="btn ripple btn-primary pd-x-20" type="submit">Add Form</button>
 						</div>
 					</form>
 					

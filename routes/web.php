@@ -39,10 +39,11 @@ Route::resource('/employees' , 'Rback\Users\EmployeeController');
 
 //********************* Research ******************//
 Route::group(['prefix' => 'research'], function () {
-	Route::resource('/add-research-task' , 'Research\ResearchController');
-
+	Route::get('/research-task/datatable' , 'Research\ResearchController@datatable');
+	Route::resource('/research-task' , 'Research\ResearchController');
+	Route::get('/funders-datatable' , 'Research\FunderController@datatable');
 	Route::resource('/funders' , 'Research\FunderController');
-
+	Route::get('/training-form/datatable' , 'Research\TrainingFormController@datatable');
 	Route::resource('/training-form' , 'Research\TrainingFormController');
 });
 
@@ -54,6 +55,8 @@ Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/inventory/equipment', 'Skincare\Inventory\EquipmentController');
 	Route::resource('/inventory/glasssware', 'Skincare\Inventory\GlassWareController');
 	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
+	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
+	Route::resource('/formulation', 'Skincare\FormulationController');
 
 });	
 Route::group(['prefix' => 'skincare'], function () {

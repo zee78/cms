@@ -141,7 +141,7 @@ function form_Create(formData) {
 var createFormData = new FormData (formData);
     // console.log(createFormData);
     $.ajax({
-        url: '/research/add-research-task',
+        url: '/research/research-task',
         type: 'POST',
         data: createFormData,
         contentType: false,
