@@ -49,16 +49,16 @@
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('skincare/'. $page='add-vendors')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Vendors</span></a>
+							<a class="nav-link" href="{{url('skincare/'. $page='vendors')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Vendors</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('skincare/'. $page='add-purchase-order')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Purchase Order</span></a>
+							<a class="nav-link" href="{{url('skincare/'. $page='purchase-order')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Purchase Order</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('skincare/'. $page='add-costing')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Costing</span></a>
+							<a class="nav-link" href="{{url('skincare/'. $page='costing')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Costing</span></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('skincare/'. $page='add-trend-analysis')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Trend Analysis</span></a>
+							<a class="nav-link" href="{{url('skincare/'. $page='trend-analysis')}}"><i class="fe fe-layers"></i><span class="sidemenu-label">Trend Analysis</span></a>
 						</li>
 						<li class="nav-label">Consultancies </li>
 						<li class="nav-item">

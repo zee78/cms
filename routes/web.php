@@ -49,7 +49,6 @@ Route::group(['prefix' => 'research'], function () {
 
 //********************* Mady SkinCare ******************//
 Route::group(['prefix' => 'skincare'], function () {
-	Route::resource('/add-formulation', 'Skincare\FormulationController');
 	Route::resource('/inventory/batch', 'Skincare\Inventory\BatchController');
 	Route::resource('/inventory/chemical', 'Skincare\Inventory\ChemicalController');
 	Route::resource('/inventory/equipment', 'Skincare\Inventory\EquipmentController');
@@ -57,6 +56,14 @@ Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
 	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
 	Route::resource('/formulation', 'Skincare\FormulationController');
+	Route::get('/vendors/datatable', 'Skincare\VendorController@datatable');
+	Route::resource('/vendors', 'Skincare\Vendor\VendorController');
+	Route::get('/purchase-order/datatable', 'Skincare\PurchaseOrder\PurchaseOrderController@datatable');
+	Route::resource('/purchase-order', 'Skincare\PurchaseOrder\PurchaseOrderController');
+	Route::get('/costing/datatable', 'Skincare\Costing\CostingController@datatable');
+	Route::resource('/costing', 'Skincare\Costing\CostingController');
+	Route::get('/trend-analysis/datatable', 'Skincare\TrendAnalysis\TrendAnalysisController@datatable');
+	Route::resource('/trend-analysis', 'Skincare\TrendAnalysis\TrendAnalysisController');
 
 });	
 Route::group(['prefix' => 'skincare'], function () {
