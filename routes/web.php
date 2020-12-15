@@ -66,6 +66,21 @@ Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/trend-analysis', 'Skincare\TrendAnalysis\TrendAnalysisController');
 
 });	
+//********************* Consultancy *********************//
+Route::group(['prefix' => 'consultancies'], function () {
+	Route::get('/consultancy/datatable', 'Consultancy\ConsultancyController@datatable');
+	Route::resource('/consultancy', 'Consultancy\ConsultancyController');
+});
+//********************* CRO *********************//
+Route::group(['prefix' => 'cro'], function () {
+	Route::get('/project/datatable', 'CRO\ProjectController@datatable');
+	Route::resource('/project', 'CRO\ProjectController');
+});
+//********************* CRO *********************//
+Route::group(['prefix' => 'community-awareness'], function () {
+	Route::get('/project/datatable', 'CommunityAwareness\ProjectController@datatable');
+	Route::resource('/project', 'CommunityAwareness\ProjectController');
+});
 Route::group(['prefix' => 'skincare'], function () {
 	// Route::get('/add-formulation', 'AdminController@add_formulation');
 	// Route::get('/add-chemicals', 'AdminController@add_chemicals');

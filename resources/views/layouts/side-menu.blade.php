@@ -62,17 +62,19 @@
 						</li>
 						<li class="nav-label">Consultancies </li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('consultancies/'. $page='add-consultancies')}}"><i class="fe fe-file"></i><span class="sidemenu-label">Consultancy Data</span></a>
+							<a class="nav-link" href="{{url('consultancies/'. $page='consultancy')}}"><i class="fe fe-file"></i><span class="sidemenu-label">Consultancy Data</span></a>
 						</li>
 						<li class="nav-label">CRO</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{url('cro/'. $page='add-consultancies')}}"><i class="fe fe-compass"></i><span class="sidemenu-label">Project</span></a>
+							<a class="nav-link" href="{{url('cro/'. $page='project')}}"><i class="fe fe-compass"></i><span class="sidemenu-label">Projects</span></a>
 						</li>
-						<li class="nav-label">Distribution</li>
 						<li class="nav-label">Community Awareness Projects </li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{url('community-awareness/'. $page='project')}}"><i class="fe fe-compass"></i><span class="sidemenu-label">Projects</span></a>
+						</li>
 						<li class="nav-label">Settings </li>
 
-						    <li class="nav-item">
+						  <li class="nav-item">
 							<a class="nav-link with-sub" href=""><i class="fe fe-aperture"></i><span class="sidemenu-label">Rback</span><i class="angle fe fe-chevron-right"></i></a>
 							<ul class="nav-sub">
 								<li class="nav-sub-item">
