@@ -17,7 +17,7 @@ class SoldStatusController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Inventory/SoldStatus/sold-status-create');
+        return \View::make('mady-skincare/Inventory/SoldStatus/sold-status-list');
         
     }
 
@@ -28,7 +28,8 @@ class SoldStatusController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare/Inventory/SoldStatus/sold-status-create');
+        
     }
 
     /**
@@ -102,5 +103,13 @@ class SoldStatusController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+       // ********************* get all batch data datatable ****************
+
+    public function datatable()
+    {
+        return \response()->json(SoldStatus::all() , 200);
+        
     }
 }

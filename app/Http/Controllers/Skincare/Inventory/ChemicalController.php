@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Chemical;
 use App\Http\Requests\StoreChemical;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateChemical;
 
 class ChemicalController extends Controller
 {
@@ -17,7 +18,7 @@ class ChemicalController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Inventory/Chemicals/chemical-create');
+        return \View::make('mady-skincare/Inventory/Chemicals/chemicals-list');
     }
 
     /**
@@ -27,7 +28,8 @@ class ChemicalController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare/Inventory/Chemicals/chemical-create');
+        
     }
 
     /**
@@ -85,7 +87,9 @@ class ChemicalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chemicalData = Chemical::find($id);
+        return \View::make('mady-skincare/Inventory/Chemicals/chemical-update' , compact('chemicalData'));
+        
     }
 
     /**
@@ -95,9 +99,33 @@ class ChemicalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateChemical $request, $id)
     {
-        //
+        $validatedData =  $request->validated();
+        $chemicalModel = Chemical::find($id);
+
+        $chemicalModel->chemical_name = $validatedData['chemical_name'];
+        $chemicalModel->stock_in_hand = $validatedData['stock_in_hand'];
+        $chemicalModel->unit_cost = $validatedData['unit_cost'];
+        $chemicalModel->quantity_used = $validatedData['quantity_used'];
+
+        $chemicalModel->usage_detail = $validatedData['usage_detail'];
+        $chemicalModel->quantity_remaining = $validatedData['quantity_remaining'];
+        $chemicalModel->stock_level = $validatedData['stock_level'];
+        $chemicalModel->cost_chemicals_used = $validatedData['cost_chemicals_used'];
+
+        $chemicalModel->wastage_amount = $validatedData['wastage_amount'];
+        $chemicalModel->wastage_cost = $validatedData['wastage_cost'];
+    
+        $chemicalModel->status = '1';
+        $chemicalModel->created_by = Auth::id();
+
+
+         if ($chemicalModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Chemical data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -108,6 +136,15 @@ class ChemicalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "delete";
+    }
+
+
+       // ********************* get all batch data datatable ****************
+
+    public function datatable()
+    {
+        return \response()->json(Chemical::all() , 200);
+        
     }
 }

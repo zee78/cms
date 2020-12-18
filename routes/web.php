@@ -50,10 +50,16 @@ Route::group(['prefix' => 'research'], function () {
 //********************* Mady SkinCare ******************//
 Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/add-formulation', 'Skincare\FormulationController');
+
+	Route::get('/inventory/batch/datatable', 'Skincare\Inventory\BatchController@datatable');
 	Route::resource('/inventory/batch', 'Skincare\Inventory\BatchController');
+	Route::get('/inventory/chemical/datatable', 'Skincare\Inventory\ChemicalController@datatable');
 	Route::resource('/inventory/chemical', 'Skincare\Inventory\ChemicalController');
+	Route::get('/inventory/equipment/datatable', 'Skincare\Inventory\EquipmentController@datatable');
 	Route::resource('/inventory/equipment', 'Skincare\Inventory\EquipmentController');
+	Route::get('/inventory/glasssware/datatable', 'Skincare\Inventory\GlassWareController@datatable');
 	Route::resource('/inventory/glasssware', 'Skincare\Inventory\GlassWareController');
+	Route::get('/inventory/soldstatus/datatable', 'Skincare\Inventory\SoldStatusController@datatable');
 	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
 	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
 	Route::resource('/formulation', 'Skincare\FormulationController');

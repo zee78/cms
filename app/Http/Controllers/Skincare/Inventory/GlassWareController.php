@@ -17,7 +17,7 @@ class GlassWareController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Inventory/Glassware/glassware-create');
+        return \View::make('mady-skincare/Inventory/Glassware/glasswares-list');
         
     }
 
@@ -28,7 +28,8 @@ class GlassWareController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare/Inventory/Glassware/glassware-create');
+        
     }
 
     /**
@@ -102,5 +103,13 @@ class GlassWareController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+       // ********************* get all batch data datatable ****************
+
+    public function datatable()
+    {
+        return \response()->json(GlassWare::all() , 200);
+        
     }
 }

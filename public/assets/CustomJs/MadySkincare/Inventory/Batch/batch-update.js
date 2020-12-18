@@ -25,7 +25,7 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formBatchCreate").validate({
+      $("#formBatchUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
@@ -84,17 +84,20 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#formBatchUpdate').serialize();
+var id = $('#batchId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/inventory/batch',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/skincare/inventory/batch/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
                 window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/inventory/batch";
 

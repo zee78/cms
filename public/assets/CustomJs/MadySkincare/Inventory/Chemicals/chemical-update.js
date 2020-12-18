@@ -25,7 +25,7 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formChemicalCreate").validate({
+      $("#formChemicalUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
@@ -138,13 +138,15 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// var createFormData = new FormData (formData);
+    var createFormData = $('#formChemicalUpdate').serialize();
+
+    $chemicalId = $("#chemicalId").val();
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/inventory/chemical',
-        type: 'POST',
+        url: '/skincare/inventory/chemical/'+$chemicalId,
+        type: 'PATCH',
         data: createFormData,
-        contentType: false,
         processData: false,
 
         success: (response)=>{

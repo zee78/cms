@@ -17,7 +17,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Inventory/Equipment/equipment-create');
+        return \View::make('mady-skincare/Inventory/Equipment/equipments-list');
         
     }
 
@@ -28,7 +28,8 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare/Inventory/Equipment/equipment-create');
+        
     }
 
     /**
@@ -107,5 +108,13 @@ class EquipmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+       // ********************* get all batch data datatable ****************
+
+    public function datatable()
+    {
+        return \response()->json(Equipment::all() , 200);
+        
     }
 }

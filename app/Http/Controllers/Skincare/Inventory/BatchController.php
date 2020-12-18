@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Batch;
 use App\Http\Requests\StoreBatch;
+use App\Http\Requests\UpdateBatch;
 use Illuminate\Support\Facades\Auth;
 
 class BatchController extends Controller
@@ -17,7 +18,7 @@ class BatchController extends Controller
      */
     public function index()
     {
-        return \View::make('mady-skincare/Inventory/Batch/batch-create');
+        return \View::make('mady-skincare/Inventory/Batch/batchs-list');
         
     }
 
@@ -28,7 +29,8 @@ class BatchController extends Controller
      */
     public function create()
     {
-        //
+        return \View::make('mady-skincare/Inventory/Batch/batch-create');
+        
     }
 
     /**
@@ -68,7 +70,8 @@ class BatchController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
     }
 
     /**
@@ -79,7 +82,10 @@ class BatchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Batch::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/Inventory/Batch/batch-update' , compact('getSingleData'));
     }
 
     /**
@@ -89,9 +95,26 @@ class BatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateBatch $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = Batch::find($id);
+
+        $findData->batch_code = $validatedData['batch_code'];
+        $findData->product_name = $validatedData['product_name'];
+        $findData->batch_size = $validatedData['batch_size'];
+        $findData->total_quantity = $validatedData['total_quantity'];
+    
+        $findData->status = '1';
+        $findData->updated_by = Auth::id();
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'batch data updated successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+        
     }
 
     /**
@@ -102,6 +125,21 @@ class BatchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Batch::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'batch data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
+    }
+
+    // ********************* get all batch data datatable ****************
+
+    public function datatable()
+    {
+        return \response()->json(Batch::all() , 200);
+        
     }
 }
