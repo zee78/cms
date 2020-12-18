@@ -49,9 +49,9 @@ Route::group(['prefix' => 'research'], function () {
 
 //********************* Mady SkinCare ******************//
 Route::group(['prefix' => 'skincare'], function () {
-	Route::resource('/add-formulation', 'Skincare\FormulationController');
 
 	Route::get('/inventory/batch/datatable', 'Skincare\Inventory\BatchController@datatable');
+
 	Route::resource('/inventory/batch', 'Skincare\Inventory\BatchController');
 	Route::get('/inventory/chemical/datatable', 'Skincare\Inventory\ChemicalController@datatable');
 	Route::resource('/inventory/chemical', 'Skincare\Inventory\ChemicalController');
@@ -63,8 +63,31 @@ Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
 	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
 	Route::resource('/formulation', 'Skincare\FormulationController');
+	Route::get('/vendors/datatable', 'Skincare\VendorController@datatable');
+	Route::resource('/vendors', 'Skincare\Vendor\VendorController');
+	Route::get('/purchase-order/datatable', 'Skincare\PurchaseOrder\PurchaseOrderController@datatable');
+	Route::resource('/purchase-order', 'Skincare\PurchaseOrder\PurchaseOrderController');
+	Route::get('/costing/datatable', 'Skincare\Costing\CostingController@datatable');
+	Route::resource('/costing', 'Skincare\Costing\CostingController');
+	Route::get('/trend-analysis/datatable', 'Skincare\TrendAnalysis\TrendAnalysisController@datatable');
+	Route::resource('/trend-analysis', 'Skincare\TrendAnalysis\TrendAnalysisController');
 
-});	
+});
+//********************* Consultancy *********************//
+Route::group(['prefix' => 'consultancies'], function () {
+	Route::get('/consultancy/datatable', 'Consultancy\ConsultancyController@datatable');
+	Route::resource('/consultancy', 'Consultancy\ConsultancyController');
+});
+//********************* CRO *********************//
+Route::group(['prefix' => 'cro'], function () {
+	Route::get('/project/datatable', 'CRO\ProjectController@datatable');
+	Route::resource('/project', 'CRO\ProjectController');
+});
+//********************* CRO *********************//
+Route::group(['prefix' => 'community-awareness'], function () {
+	Route::get('/project/datatable', 'CommunityAwareness\ProjectController@datatable');
+	Route::resource('/project', 'CommunityAwareness\ProjectController');
+});
 Route::group(['prefix' => 'skincare'], function () {
 	// Route::get('/add-formulation', 'AdminController@add_formulation');
 	// Route::get('/add-chemicals', 'AdminController@add_chemicals');

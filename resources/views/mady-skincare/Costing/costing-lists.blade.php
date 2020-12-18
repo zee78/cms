@@ -11,7 +11,7 @@
 					<!-- Page Header -->
 					<div class="page-header">
 						<div>
-							<h2 class="main-content-title tx-24 mg-b-5">Formulation</h2>
+							<h2 class="main-content-title tx-24 mg-b-5">Costing</h2>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#">Dashboard</a></li>
 								<li class="breadcrumb-item active" aria-current="page">List</li>
@@ -32,7 +32,7 @@
 								<a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i>Remove</a>
 								<a class="dropdown-item" href="#"><i class="fe fe-settings mr-2"></i>More</a>
 							</div> -->
-							<a class="btn ripple btn-secondary" href="{{ url('skincare/formulation/create') }}"><i class="fe fe-download"></i> Add New Formulation</a>
+							<a class="btn ripple btn-secondary" href="{{ url('skincare/costing/create') }}"><i class="fe fe-download"></i> Add New Cost</a>
 						</div>
 					</div>
 					<!-- End Page Header -->
@@ -44,7 +44,7 @@
 							<div class="card custom-card">
 								<div class="card-body">
 									<div>
-										<h6 class="card-title mb-1">Formulation</h6>
+										<h6 class="card-title mb-1">Cost List</h6>
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
@@ -52,14 +52,20 @@
 											<thead>
 												<tr>
 													<th class="wd-20p">Sr#</th>
-													<th class="wd-25p">Formulation Name</th>
+													<th class="wd-20p">Product Name</th>
 													<th class="wd-25p">Ingredient Name</th>
-													<th class="wd-25p">Quantity</th>
-													<th class="wd-25p">Equipment Used</th>
-													<th class="wd-20p">Procedure</th>
-													<th class="wd-25p">Container Used</th>
-													<th class="wd-30p">Label Type Used</th>
-													<th class="wd-20p">Pack Size</th>
+													<th class="wd-25p">Quantity Used</th>
+													<th class="wd-25p">Container Name</th>
+													<th class="wd-25p">Container Cost</th>
+													<th class="wd-25p">Sticker Cost</th>
+													<th class="wd-25p">Box Cost</th>
+													<th class="wd-25p">Bag Cost</th>
+													<th class="wd-25p">Total Direct Cost</th>
+													<th class="wd-25p">Gst(18%)</th>
+													<th class="wd-25p">Marketing Cost(26%)</th>
+													<th class="wd-25p">Profit %age</th>
+													<th class="wd-25p">Profit Amount(RS)</th>
+													<th class="wd-25p">Market Retail Price</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -93,6 +99,6 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Formulation/formulation-list.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Costing/costing-list.js')}}"></script>
 
 @endsection
