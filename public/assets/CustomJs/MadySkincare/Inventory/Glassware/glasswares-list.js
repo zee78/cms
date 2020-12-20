@@ -19,14 +19,15 @@ $(document).ready(()=>{
          { data: "stock_in_hand" },
          { data: "breakge" },
          { data: "responsible_person" },
-        //  { render : function(data, type, row , full) {
-        //     return `
-        //     <div class="glyph">
-        //         <a href="/roles/assign-permissions/`+row[0]+`"> <i class="glyph-icon iconsminds-tag primary"></i> </a>
-        //     </div>
-        //     `
-        // }
-        //     },
+         { render : function(data, type, row , full) {
+            return `
+            <div class="glyph">
+                <a href="/skincare/inventory/glasssware/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
+                <a class="modal-effect" data-effect="effect-scale" data-toggle="modal" href="#" onclick="deleteGlassware('`+row.id+`')"> <i class="typcn typcn-trash"></i> </a>
+            </div>
+            `
+          }
+        },
        //   { render : function(data, type, row) {
        //     return `
        //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
@@ -50,5 +51,43 @@ $(document).ready(()=>{
      },
      
 	});
+  // ******************** ******************************* confirm delete ajax **********************
 
+
+  $('#deleteData').on('submit' , function(event){
+    event.preventDefault();
+    var data = $("#deleteData").serialize();
+    $glasswarelId = $("#glasswarelId").val();
+    console.log($glasswarelId)
+
+       $.ajax({
+        url: '/skincare/inventory/glasssware/'+$glasswarelId,
+        type: 'DELETE',
+        data: data,
+        processData: false,
+
+        success: (response)=>{
+            
+            if (response.status == 'true') {
+
+                $.notify(response.message , 'success'  );
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/inventory/batch";
+
+            }else{
+                $.notify(response.message , 'error');
+
+            }
+        },
+        error: (errorResponse)=>{
+            $.notify( errorResponse, 'error'  );
+
+
+        }
+    })
+
+    });
 });
+function deleteGlassware(id) {
+  $("#deleteModel").modal('show');
+  $("#glasswareId").val(id);
+}

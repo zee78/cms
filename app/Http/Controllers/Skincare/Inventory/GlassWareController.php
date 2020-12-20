@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GlassWare;
 use App\Http\Requests\StoreGlassWare;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateGlassWare;
 
 class GlassWareController extends Controller
 {
@@ -79,7 +80,10 @@ class GlassWareController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Glassware::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/Inventory/Glassware/glasswares-update' , compact('getSingleData'));
     }
 
     /**
@@ -91,7 +95,24 @@ class GlassWareController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      $findData = GlassWare::find($id);
+
+      $findData->glassware_name = $validatedData['glassware_name'];
+      $findData->stock_in_hand = $validatedData['stock_in_hand'];
+      $findData->breakge = $validatedData['breakge'];
+      $findData->responsible_person = $validatedData['responsible_person'];
+      
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+
+
+       if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'GlassWare data updated successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**
