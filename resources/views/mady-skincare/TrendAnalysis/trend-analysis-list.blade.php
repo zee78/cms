@@ -56,11 +56,12 @@
 													<th class="wd-25p">Packs Sold</th>
 													<th class="wd-25p">Amount Received</th>
 													<th class="wd-25p">Customer Feedback</th>
+													<th class="wd-25p">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-										
-											
+
+
 											</tbody>
 										</table>
 									</div>

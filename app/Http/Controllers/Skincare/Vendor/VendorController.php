@@ -4,6 +4,9 @@ namespace App\Http\Controllers\SKincare\Vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Vendor;
+use App\Http\Requests\StoreVendor;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -24,7 +27,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-       return \View::make('mady-skincare.Vendors.vendors-create');
+       return \View::make('mady-skincare.Vendors.vendor-create');
     }
 
     /**
@@ -33,9 +36,26 @@ class VendorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVendor $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $vendorModel = new Vendor();
+
+        $vendorModel->vendor_type = $validatedData['vendor_type'];
+        $vendorModel->vendor_name = $validatedData['vendor_name'];
+        $vendorModel->phoneNo = $validatedData['phoneNo'];
+        $vendorModel->address = $validatedData['address'];
+
+        $vendorModel->status = '1';
+        $vendorModel->created_by = Auth::id();
+
+
+         if ($vendorModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'vendor data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -81,5 +101,13 @@ class VendorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // ****************************** get all vendors ************************
+
+    public function datatable()
+    {
+        return \response()->json(Vendor::orderBy('id')->get() , 200);
+
     }
 }

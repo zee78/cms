@@ -63,7 +63,7 @@ Route::group(['prefix' => 'skincare'], function () {
 	Route::resource('/inventory/soldstatus', 'Skincare\Inventory\SoldStatusController');
 	Route::get('/formulation/datatable', 'Skincare\FormulationController@datatable');
 	Route::resource('/formulation', 'Skincare\FormulationController');
-	Route::get('/vendors/datatable', 'Skincare\VendorController@datatable');
+	Route::get('/vendors/datatable', 'Skincare\Vendor\VendorController@datatable');
 	Route::resource('/vendors', 'Skincare\Vendor\VendorController');
 	Route::get('/purchase-order/datatable', 'Skincare\PurchaseOrder\PurchaseOrderController@datatable');
 	Route::resource('/purchase-order', 'Skincare\PurchaseOrder\PurchaseOrderController');

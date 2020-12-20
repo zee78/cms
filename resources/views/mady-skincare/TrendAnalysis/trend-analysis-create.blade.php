@@ -19,7 +19,7 @@
 			<li class="breadcrumb-item active" aria-current="page">Create Trend Analysis</li>
 		</ol>
 	</div>
-	
+
 </div>
 <!-- End Page Header -->
 @endsection
@@ -31,42 +31,55 @@
 			<div class="card-body">
 				<div>
 					<h6 class="card-title mb-1">Add Trend Analysis</h6>
-					
+
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formTrendCreate">
 						@csrf
 						<div class="">
 							<div class="row">
-								<div class="col-lg-6 form-group">
+                                <div class="col-lg-6 col-md-6">
+								<div class="form-group">
 									<label class="form-label">Product Name: <span class="tx-danger">*</span></label>
 									<input type="text" name="product_name" class="form-control" placeholder="Product Name">
-								</div>
-								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
+                                </div>
+                                </div>
+                                <!-- ***************** eployee first name  -->
+                                <div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Packs Sold: <span class="tx-danger">*</span></label>
 									<input type="text" name="packs_sold" class="form-control" placeholder="Packs sold">
-								</div>
+                                </div>
+                                </div>
 								<!-- ****************** employee last name *************** -->
-								
+
 							</div>
 							<div class="row">
-								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+                                <!-- ***************** eployee email  -->
+                                <div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Amount Received: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="amount_received" placeholder="Amount Received" required="" type="text">
-								</div>
-								<div class="col-lg-6 form-group">
+                                </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Customer Feedback: </label>
 									<textarea class="form-control" rows="2" cols="10" name="customer_feedback"></textarea>
-								</div>
+                                </div>
+
+                                </div>
 								<!-- ****************** employee phone number *************** -->
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Submit Trend Analysis</button>
 						</div>
 					</form>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
@@ -89,5 +102,6 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/trend-analysis-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/TrendAnalysis/trend-analysis-create.js')}}"></script>
+
 @endsection
