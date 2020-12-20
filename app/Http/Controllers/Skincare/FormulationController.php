@@ -17,7 +17,7 @@ class FormulationController extends Controller
     public function index()
     {
         return \View::make('mady-skincare.Formulation.formulation-list');
-        
+
     }
 
     /**

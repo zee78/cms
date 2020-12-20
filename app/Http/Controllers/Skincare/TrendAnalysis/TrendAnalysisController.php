@@ -4,7 +4,9 @@ namespace App\Http\Controllers\SKincare\TrendAnalysis;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreTrendAnalysis;
+use App\Models\TrendAnalysis;
+use Illuminate\Support\Facades\Auth;
 class TrendAnalysisController extends Controller
 {
     /**
@@ -33,9 +35,26 @@ class TrendAnalysisController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTrendAnalysis $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $trendAnalysisModel = new TrendAnalysis();
+
+        $trendAnalysisModel->product_name = $validatedData['product_name'];
+        $trendAnalysisModel->packs_sold = $validatedData['packs_sold'];
+        $trendAnalysisModel->amount_received = $validatedData['amount_received'];
+        $trendAnalysisModel->customer_feedback = $validatedData['customer_feedback'];
+
+        $trendAnalysisModel->status = '1';
+        $trendAnalysisModel->created_by = Auth::id();
+
+
+         if ($trendAnalysisModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Trend Analysis data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -81,5 +100,13 @@ class TrendAnalysisController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    // ******************* get all data ***************
+
+    public function datatable()
+    {
+        return \response()->json(TrendAnalysis::orderBy('id')->get() , 200);
+
     }
 }

@@ -48,7 +48,7 @@
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
-										<table class="table" id="tblFormulation">
+										<table class="table" id="tblVendors">
 											<thead>
 												<tr>
 													<th class="wd-20p">Sr#</th>
@@ -56,11 +56,12 @@
 													<th class="wd-25p">Vendor Name</th>
 													<th class="wd-25p">Contact</th>
 													<th class="wd-25p">Address</th>
+													<th class="wd-25p">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-										
-											
+
+
 											</tbody>
 										</table>
 									</div>
@@ -89,6 +90,6 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Formulation/vendor-list.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Vendors/vendors-list.js')}}"></script>
 
 @endsection
