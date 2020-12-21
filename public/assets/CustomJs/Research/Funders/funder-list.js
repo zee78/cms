@@ -14,15 +14,19 @@ $(document).ready(()=>{
          { data: "phoneNo" },
          { data: "team_lead" },
          { data: "funder_status" },
-         { data: "response" }
-        //  { render : function(data, type, row , full) {
-        //     return `
-        //     <div class="glyph">
-        //         <a href="/roles/assign-permissions/`+row[0]+`"> <i class="glyph-icon iconsminds-tag primary"></i> </a>
-        //     </div>
-        //     `
-        // }
-        //     },
+         { data: "response" },
+        { render : function(data, type, row , full) {
+          // console.log(row)
+            return `
+            <div class="glyph">
+                <a href="/research/funders/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
+                <a class="modal-effect" data-effect="effect-scale" data-toggle="modal" href="#" onclick="deleteBatch('`+row.id+`')"> <i class="typcn typcn-trash"></i> </a>
+            </div>
+
+
+            `
+           }
+         },
        //   { render : function(data, type, row) {
        //     return `
        //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
@@ -47,4 +51,44 @@ $(document).ready(()=>{
      
   });
 
+  // ******************** ******************************* confirm delete ajax **********************
+
+
+  $('#deleteData').on('submit' , function(event){
+    event.preventDefault();
+    var data = $("#deleteData").serialize();
+    $funderId = $("#funderId").val();
+    console.log($funderId)
+
+       $.ajax({
+        url: '/research/funders/'+$funderId,
+        type: 'DELETE',
+        data: data,
+        processData: false,
+
+        success: (response)=>{
+            
+            if (response.status == 'true') {
+
+                $.notify(response.message , 'success'  );
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders";
+
+            }else{
+                $.notify(response.message , 'error');
+
+            }
+        },
+        error: (errorResponse)=>{
+            $.notify( errorResponse, 'error'  );
+
+
+        }
+    })
+
+    });
+
 });
+function deleteBatch(id) {
+  $("#deleteModel").modal('show');
+  $("#funderId").val(id);
+}

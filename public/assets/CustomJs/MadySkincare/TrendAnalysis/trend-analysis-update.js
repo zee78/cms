@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,69 +25,48 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#trendUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                product_name: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                packs_sold: {
                     required: true,
                     // lettersonly: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
-                phoneNo: {
+                amount_received: {
                     required: true,
                     number: true
                 },
-                team_lead: {
+                customer_feedback: {
                     required: true,
-                    
-                },
-                status: {
-                    required: true,
-                },
-                response: {
-                    required: true,
+                    // number: true
                 },
 
 
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                product_name: {
+                    required: "Please enter product name",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
+                packs_sold: {
+                    required: "Please enter sold packs",
 
                 } ,
-                email: {
-                    required: "Please enter email",
+                amount_received: {
+                    required: "Please enter recived amount",
+                    number: "Please enter valid number",
 
                 } ,
-                phoneNo: {
-                    required: "Please enter phone number",
-                    number: "Please enter valid integer",
-                } ,
-                team_lead: {
-                    required: "Please enter team lead",
-
-                } ,
-                status: {
-                    equalTo: "Please select status",
-
-                } ,
-                response: {
-                    required: "Please enter response",
-
+                customer_feedback: {
+                    required: "Please enter feedback",
+                    // number: "Please enter valid number",
                 } ,
 
             },
@@ -113,19 +84,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#trendUpdate').serialize();
+var id = $('#trendId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/skincare/trend-analysis/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/trend-analysis/";
+
             }else{
                 $.notify(response.message , 'error');
 

@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,70 +25,82 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#formFormulationUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                formulation_name: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                ingredient_name: {
                     required: true,
                     // lettersonly: true
                 },
-                email: {
-                    required: true,
-                    email: true
-                },
-                phoneNo: {
+                quantity: {
                     required: true,
                     number: true
                 },
-                team_lead: {
+                equipment_used: {
                     required: true,
+                    // number: true
+                },
+                procedure: {
+                    required: true,
+                    // number: true
                     
                 },
-                status: {
+                container_used: {
                     required: true,
+                    // number: true,
                 },
-                response: {
+                label_type_used: {
                     required: true,
+                    // number: true,
                 },
+                pack_size: {
+                    required: true,
+                    // number: true,
+                }
 
 
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                formulation_name: {
+                    required: "Please enter formulation name",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
+                ingredient_name: {
+                    required: "Please enter ingredient name",
 
                 } ,
-                email: {
-                    required: "Please enter email",
+                quantity: {
+                    required: "Please enter quantity",
+                    number: "Please enter valid number",
 
                 } ,
-                phoneNo: {
-                    required: "Please enter phone number",
-                    number: "Please enter valid integer",
+                equipment_used: {
+                    required: "Please enter the name of equipment you used",
                 } ,
-                team_lead: {
-                    required: "Please enter team lead",
+                procedure: {
+                    required: "Please enter preocedure you perform",
 
                 } ,
-                status: {
-                    equalTo: "Please select status",
+                container_used: {
+                    required: "Please enter the container you used ",
+
 
                 } ,
-                response: {
-                    required: "Please enter response",
+                label_type_used: {
+                    required: "Please enter the label type you used",
 
-                } ,
+                },
+                pack_size: {
+                    required: "Please enter the pack size",
+
+                }
 
             },
 
@@ -113,19 +117,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#formFormulationUpdate').serialize();
+var id = $('#formulationId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/skincare/formulation/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/formulation/";
+
             }else{
                 $.notify(response.message , 'error');
 

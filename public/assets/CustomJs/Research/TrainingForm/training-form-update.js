@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,70 +25,76 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#trainingUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                title: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                form_type: {
                     required: true,
                     // lettersonly: true
                 },
-                email: {
+                date: {
                     required: true,
-                    email: true
+                    // email: true
                 },
-                phoneNo: {
+                speaker: {
+                    required: true,
+                    // number: true
+                },
+                number_participants: {
                     required: true,
                     number: true
-                },
-                team_lead: {
-                    required: true,
                     
                 },
-                status: {
+                total_amount_received: {
                     required: true,
+                    number: true,
                 },
-                response: {
+                total_amount_spent: {
                     required: true,
-                },
+                    number: true,
+                }
 
 
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                title: {
+                    required: "Please enter title",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
+                form_type: {
+                    required: "Please select  type",
 
                 } ,
-                email: {
-                    required: "Please enter email",
+                date: {
+                    required: "Please select date",
 
                 } ,
-                phoneNo: {
-                    required: "Please enter phone number",
+                speaker: {
+                    required: "Please enter speaker name",
+                } ,
+                number_participants: {
+                    required: "Please enter amount",
                     number: "Please enter valid integer",
-                } ,
-                team_lead: {
-                    required: "Please enter team lead",
 
                 } ,
-                status: {
-                    equalTo: "Please select status",
+                total_amount_received: {
+                    required: "Please enter total amount recived",
+                    number: "Please enter valid number",
+
 
                 } ,
-                response: {
-                    required: "Please enter response",
+                total_amount_spent: {
+                    required: "Please enter total amount spent",
+                    number: "Please enter valid number",
 
-                } ,
+                }
 
             },
 
@@ -113,19 +111,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#trainingUpdate').serialize();
+var id = $('#trainingId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/research/training-form/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/training-form/";
+
             }else{
                 $.notify(response.message , 'error');
 

@@ -11,14 +11,14 @@
 					<!-- Page Header -->
 					<div class="page-header">
 						<div>
-							<h2 class="main-content-title tx-24 mg-b-5">Empty Page</h2>
+							<h2 class="main-content-title tx-24 mg-b-5">Glassware</h2>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#">Pages</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Empty Page</li>
+								<li class="breadcrumb-item active" aria-current="page">List</li>
 							</ol>
 						</div>
 						<div class="btn btn-list">
-							<a class="btn ripple btn-primary" href="#"><i class="fe fe-external-link"></i> Export</a>
+							<!-- <a class="btn ripple btn-primary" href="#"><i class="fe fe-external-link"></i> Export</a>
 							<a class="btn ripple btn-secondary" href="#"><i class="fe fe-download"></i> Download</a>
 							<a class="btn ripple btn-info" href="#"><i class="fe fe-help-circle"></i> Help</a>
 							<a class="btn ripple btn-danger dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -31,7 +31,7 @@
 								<a class="dropdown-item" href="#"><i class="fe fe-folder-plus mr-2"></i>Save</a>
 								<a class="dropdown-item" href="#"><i class="fe fe-trash-2 mr-2"></i>Remove</a>
 								<a class="dropdown-item" href="#"><i class="fe fe-settings mr-2"></i>More</a>
-							</div>
+							</div> -->
 							<a class="btn ripple btn-secondary" href="{{ url('/skincare/inventory/glasssware/create') }}"><i class="fe fe-download"></i> Add New GlassWare</a>
 						</div>
 					</div>

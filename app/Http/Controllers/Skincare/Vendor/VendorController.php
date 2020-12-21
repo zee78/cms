@@ -100,7 +100,14 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Vendor::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'costing data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
 
     // ****************************** get all vendors ************************

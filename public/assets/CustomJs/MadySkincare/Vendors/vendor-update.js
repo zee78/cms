@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,69 +25,48 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#venderUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                vendor_type: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                vendor_name: {
                     required: true,
                     // lettersonly: true
-                },
-                email: {
-                    required: true,
-                    email: true
                 },
                 phoneNo: {
                     required: true,
                     number: true
                 },
-                team_lead: {
+                address: {
                     required: true,
-                    
-                },
-                status: {
-                    required: true,
-                },
-                response: {
-                    required: true,
+                    // number: true
                 },
 
 
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                vendor_type: {
+                    required: "Please enter vendor type",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
-
-                } ,
-                email: {
-                    required: "Please enter email",
+                vendor_name: {
+                    required: "Please enter vendor name",
 
                 } ,
                 phoneNo: {
                     required: "Please enter phone number",
-                    number: "Please enter valid integer",
-                } ,
-                team_lead: {
-                    required: "Please enter team lead",
+                    number: "Please enter valid number",
 
                 } ,
-                status: {
-                    equalTo: "Please select status",
-
-                } ,
-                response: {
-                    required: "Please enter response",
-
+                address: {
+                    required: "Please enter address",
+                    // number: "Please enter valid number",
                 } ,
 
             },
@@ -113,19 +84,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#venderUpdate').serialize();
+var id = $('#venderId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/skincare/vendors/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/vendors/";
+
             }else{
                 $.notify(response.message , 'error');
 

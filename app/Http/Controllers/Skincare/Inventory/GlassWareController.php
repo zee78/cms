@@ -93,7 +93,7 @@ class GlassWareController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateGlassWare $request, $id)
     {
       $validatedData = $request->validated();
 
@@ -123,7 +123,14 @@ class GlassWareController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Glassware::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'costing data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
 
        // ********************* get all batch data datatable ****************

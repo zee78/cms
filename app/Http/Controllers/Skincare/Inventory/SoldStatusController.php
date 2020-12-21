@@ -102,7 +102,14 @@ class SoldStatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = SoldStatus::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'sold status data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
 
        // ********************* get all batch data datatable ****************

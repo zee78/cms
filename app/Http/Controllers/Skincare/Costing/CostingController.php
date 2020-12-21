@@ -80,6 +80,18 @@ class CostingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Costing::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'costing data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
+    }
+    public function datatable()
+    {
+        return \response()->json(Costing::orderBy('id')->get() , 200);
+        # code...
     }
 }

@@ -66,6 +66,7 @@
 													<th class="wd-25p">Profit %age</th>
 													<th class="wd-25p">Profit Amount(RS)</th>
 													<th class="wd-25p">Market Retail Price</th>
+													<th class="wd-20p">Action</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -83,6 +84,30 @@
 				</div>
 			</div>
 			<!-- End Main Content-->
+						<!-- Modal effects -->
+			<div class="modal" id="deleteModel">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content modal-content-demo">
+						<div class="modal-header">
+							<h6 class="modal-title">Alert</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<form id="deleteData" > 
+							@csrf
+							 @method('DELETE')
+						<input type="hidden" name="costingId" id="costingId">
+						<div class="modal-body">
+							<h6></h6>
+							<p>are you sure you want to delete the record ?</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn ripple btn-danger" id="confirmDelete" type="submit"> Delete </button>
+							<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+						</div>
+					   </form>
+					</div>
+				</div>
+			</div>
+			<!-- End Modal effects-->
 @endsection
 @section('js')
 <!-- Data Table js -->

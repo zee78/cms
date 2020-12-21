@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,7 +25,7 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#fundersUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
@@ -113,19 +105,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#fundersUpdate').serialize();
+var id = $('#fundersId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/research/funders/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
                 window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+
             }else{
                 $.notify(response.message , 'error');
 

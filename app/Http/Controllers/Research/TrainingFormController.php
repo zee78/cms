@@ -105,7 +105,14 @@ class TrainingFormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = TrainingForm::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'training form data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
     public function datatable()
     {

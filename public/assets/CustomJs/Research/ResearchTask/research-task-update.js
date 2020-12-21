@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,68 +25,93 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#researchUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                title: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                project_type: {
                     required: true,
                     // lettersonly: true
                 },
-                email: {
+                funder_type: {
                     required: true,
-                    email: true
+                    // email: true
                 },
-                phoneNo: {
+                funder_name: {
+                    required: true,
+                    // number: true
+                },
+                amount: {
                     required: true,
                     number: true
+                    
+                },
+                start_date: {
+                    required: true,
+                },
+                end_date: {
+                    required: true,
                 },
                 team_lead: {
                     required: true,
-                    
+                   
+                },
+                team_members: {
+                    required: true,
+                   
                 },
                 status: {
                     required: true,
-                },
-                response: {
-                    required: true,
+                   
                 },
 
 
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                title: {
+                    required: "Please enter title",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
+                project_type: {
+                    required: "Please select project type",
 
                 } ,
-                email: {
-                    required: "Please enter email",
+                funder_type: {
+                    required: "Please select funder type",
 
                 } ,
-                phoneNo: {
-                    required: "Please enter phone number",
+                funder_name: {
+                    required: "Please enter funder name",
+                } ,
+                amount: {
+                    required: "Please enter amount",
                     number: "Please enter valid integer",
+
+                } ,
+                start_date: {
+                    equalTo: "Please select starte date",
+
+                } ,
+                end_date: {
+                    required: "Please select end date",
+
                 } ,
                 team_lead: {
                     required: "Please enter team lead",
 
                 } ,
-                status: {
-                    equalTo: "Please select status",
+                team_members: {
+                    required: "Please enter team member",
 
                 } ,
-                response: {
-                    required: "Please enter response",
+                status: {
+                    required: "Please select status",
 
                 } ,
 
@@ -113,19 +130,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#researchUpdate').serialize();
+var id = $('#researchId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/research/research-task/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/research-task/";
+
             }else{
                 $.notify(response.message , 'error');
 

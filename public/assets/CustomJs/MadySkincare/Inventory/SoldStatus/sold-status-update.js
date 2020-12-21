@@ -16,14 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -33,70 +25,61 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCreateFunder").validate({
+      $("#formSoldStatusUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                funding_organization_name: {
+                product_name: {
                     required: true,
                     // lettersonly: true
                 },
-                website: {
+                date: {
                     required: true,
-                    // lettersonly: true
+                    // number: true
                 },
-                email: {
+                packs_sold: {
                     required: true,
-                    email: true
+                    // number: true
                 },
-                phoneNo: {
+                packs_in_hand: {
+                    required: true,
+                    // number: true
+                },
+                amount_received: {
                     required: true,
                     number: true
                 },
-                team_lead: {
-                    required: true,
-                    
-                },
-                status: {
-                    required: true,
-                },
-                response: {
-                    required: true,
-                },
-
-
+            
             },
             messages: {
-                funding_organization_name: {
-                    required: "Please enter funding organization name",
+                product_name: {
+                    required: "Please enter product name",
 
                 } ,
-                website: {
-                    required: "Please enter website url",
+                date: {
+                    required: "Please enter date",
+                    // number: "Please enter valid number",
+                    
 
                 } ,
-                email: {
-                    required: "Please enter email",
+                packs_sold: {
+                    required: "Please enter sold packs",
+                    // number: "Please enter valid number",
 
                 } ,
-                phoneNo: {
-                    required: "Please enter phone number",
-                    number: "Please enter valid integer",
+                packs_in_hand: {
+                    required: "Please enter packs in hand",
+                    // number: "Please enter valid number",
                 } ,
-                team_lead: {
-                    required: "Please enter team lead",
+                amount_received: {
+                    required: "Please enter amount you recived",
+                    number: "Please enter valid number",
 
                 } ,
-                status: {
-                    equalTo: "Please select status",
-
-                } ,
-                response: {
-                    required: "Please enter response",
-
-                } ,
+               
+                
 
             },
 
@@ -113,19 +96,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// console.log(formData)
+var createFormData = $('#formSoldStatusUpdate').serialize();
+var id = $('#soldStatusId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/research/funders',
-        type: 'POST',
-        data: createFormData,
-        contentType: false,
+        url: '/skincare/inventory/soldstatus/'+id,
+        type: 'PATCH',
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/inventory/soldstatus/";
+
             }else{
                 $.notify(response.message , 'error');
 
