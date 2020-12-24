@@ -23,7 +23,7 @@ $(document).ready(()=>{
             // console.log(row)
               return `
               <div class="glyph">
-                  <a href="/skincare/inventory/vendors/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
+                  <a href="/skincare/vendors/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
                   <a class="modal-effect" data-effect="effect-scale" data-toggle="modal" href="#" onclick="deleteVendor('`+row.id+`')"> <i class="typcn typcn-trash"></i> </a>
               </div>
 
@@ -66,7 +66,7 @@ $(document).ready(()=>{
       console.log($venderId)
 
          $.ajax({
-          url: '/skincare/inventory/vendors/'+$venderId,
+          url: '/skincare/vendors/'+$venderId,
           type: 'DELETE',
           data: data,
           processData: false,
@@ -76,7 +76,7 @@ $(document).ready(()=>{
               if (response.status == 'true') {
 
                   $.notify(response.message , 'success'  );
-                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/inventory/vendors";
+                  window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/vendors";
 
               }else{
                   $.notify(response.message , 'error');

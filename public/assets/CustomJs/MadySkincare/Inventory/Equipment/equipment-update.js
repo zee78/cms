@@ -124,7 +124,7 @@ $(document).ready(()=>{
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
 // console.log(formData)
-var createFormData = $('#formBatchUpdate').serialize();
+var createFormData = $('#formEquipmentUpdate').serialize();
 var id = $('#quipmentId').val();
     // console.log(createFormData);
     $.ajax({

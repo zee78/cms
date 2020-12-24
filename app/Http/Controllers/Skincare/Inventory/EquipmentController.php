@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Equipment;
 use App\Http\Requests\StoreEquipment;
+use App\Http\Requests\UpdateEquipment;
 use Illuminate\Support\Facades\Auth;
 
 class EquipmentController extends Controller
@@ -84,7 +85,10 @@ class EquipmentController extends Controller
      */
     public function edit($id)
     {
-        //
+      $getSingleData = Equipment::find($id);
+        // return $getSingleData->id;
+
+      return \View::make('mady-skincare/Inventory/Equipment/equipment-update' , compact('getSingleData'));
     }
 
     /**
@@ -94,9 +98,31 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateEquipment $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      $findData = Equipment::find($id);
+
+      $findData->quipment_name = $validatedData['quipment_name'];
+      $findData->equipment_number = $validatedData['equipment_number'];
+      $findData->functional_status = $validatedData['functional_status'];
+      $findData->hours_used = $validatedData['hours_used'];
+
+      $findData->start_time = $validatedData['start_time'];
+      $findData->end_time = $validatedData['end_time'];
+      $findData->maintenance_date = $validatedData['maintenance_date'];
+      $findData->due_date = $validatedData['due_date'];
+  
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+
+
+       if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'equipment data updateds successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**

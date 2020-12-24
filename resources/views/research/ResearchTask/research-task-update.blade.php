@@ -35,16 +35,17 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formResearchCreate">
+					<form  id="researchUpdate">
 						@csrf
 						<div class="">
 							<div class="row ">
 								<!-- ***************** eployee first name  -->
 								<div class="col-md-6 col-lg-6">
 									<div class="form-group">
-									<label class="form-label">Title: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="title" placeholder="Enter task title" required="" type="text">
-								</div>
+										<input class="form-control" type="hidden" id="researchId" value="{{ $getSingleData->id }}">
+										<label class="form-label">Title: <span class="tx-danger">*</span></label>
+										<input class="form-control" name="title" placeholder="Enter task title" required="" value="{{ $getSingleData->title }}" type="text">
+									</div>
 									
 								</div>
 								<!-- ****************** employee last name *************** -->
@@ -53,6 +54,7 @@
 								<div class="form-group">
 									<label class="form-label">Project Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="project_type">
+										<option value="{{ $getSingleData->project_type }}" selected="">{{ $getSingleData->project_type }}</option>
 										<option value="Thesis">Thesis</option>
 										<option value="Paper Writing">Paper Writing</option>
 										<option value="Literature Review">Literature Review</option>
@@ -68,6 +70,7 @@
 								<div class="form-group">
 									<label class="form-label">Funder Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="funder_type">
+										<option value="{{ $getSingleData->funder_type }}" selected>{{ $getSingleData->funder_type }}</option>
 										<option value="Student">Student</option>
 										<option value="Professional">Professional</option>
 										<option value="National Organization">National Organization</option>
@@ -80,7 +83,7 @@
 								
 								<div class="form-group">
 									<label class="form-label">Funder Name: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="funder_name" id="funder_name" placeholder="Enter Funder Name" required="" type="text">
+									<input class="form-control" name="funder_name" id="funder_name" placeholder="Enter Funder Name" value="{{ $getSingleData->funder_name }}" required="" type="text">
 								</div>
 								
 								</div>
@@ -91,7 +94,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Amount: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="amount" placeholder="Enter Amount" required="" type="number">
+									<input class="form-control" name="amount" placeholder="Enter Amount" required="" type="number" value="{{ $getSingleData->amount }}">
 								</div>
 							    </div>
 							</div>
@@ -101,7 +104,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Start Date: <span class="tx-danger">*</span></label>
-									<input type="text" name="start_date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" required="">
+									<input type="text" name="start_date" class="form-control fc-datepicker" placeholder="MM/DD/YYYY" value="{{ $getSingleData->start_date }}" required="">
 								</div>
 							    </div>
 								<!-- ****************** employee date of birth *************** -->
@@ -109,7 +112,7 @@
 
 								<div class="form-group">
 									<label class="form-label">End Date: <span class="tx-danger">*</span></label>
-									<input class="form-control fc-datepicker" name="end_date" placeholder="MM/DD/YYYY" type="text" required="">
+									<input class="form-control fc-datepicker" name="end_date" placeholder="MM/DD/YYYY" type="text" required="" value="{{ $getSingleData->end_date }}">
 								</div>
 							    </div>
 								
@@ -120,7 +123,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Team Lead: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="team_lead" id="team_lead" placeholder="Enter Team Lead" required="" type="text">
+									<input class="form-control" name="team_lead" id="team_lead" placeholder="Enter Team Lead" required="" type="text" value="{{ $getSingleData->team_lead }}">
 								</div>
 							    </div>
 								<!-- ****************** employee confirm password *************** -->
@@ -128,7 +131,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Team Members: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="team_members" placeholder="Enter Team Members" required="" type="text">
+									<input class="form-control" name="team_members" placeholder="Enter Team Members" required="" type="text" value="{{ $getSingleData->team_members }}">
 								</div>
 							    </div>
 								
@@ -140,6 +143,7 @@
 								<div class="form-group">
 									<label class="form-label">Status: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="status">
+										<option value="{{ $getSingleData->task_status }}" selected>{{ $getSingleData->task_status }}</option>
 										<option value="In Process">In Process</option>
 										<option value="Completed">Completed</option>
 									</select>
@@ -176,5 +180,5 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Research/ResearchTask/research-task-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/Research/ResearchTask/research-task-update.js')}}"></script>
 @endsection

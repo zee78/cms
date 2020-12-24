@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SKincare\TrendAnalysis;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTrendAnalysis;
+use App\Http\Requests\UpdateTrendAnalysis;
 use App\Models\TrendAnalysis;
 use Illuminate\Support\Facades\Auth;
 class TrendAnalysisController extends Controller
@@ -76,7 +77,10 @@ class TrendAnalysisController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = TrendAnalysis::find($id);
+        // return $getSingleData->id;
+
+      return \View::make('mady-skincare/TrendAnalysis/trend-analysis-update' , compact('getSingleData'));
     }
 
     /**
@@ -86,9 +90,26 @@ class TrendAnalysisController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTrendAnalysis $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = TrendAnalysis::find($id);
+
+        $findData->product_name = $validatedData['product_name'];
+        $findData->packs_sold = $validatedData['packs_sold'];
+        $findData->amount_received = $validatedData['amount_received'];
+        $findData->customer_feedback = $validatedData['customer_feedback'];
+
+        $findData->status = '1';
+        $findData->created_by = Auth::id();
+
+
+         if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Trend Analysis updated add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**

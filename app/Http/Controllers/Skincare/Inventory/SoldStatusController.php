@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SoldStatus;
 use App\Http\Requests\StoreSoldStatus;
+use App\Http\Requests\UpdateSoldStatus;
 use Illuminate\Support\Facades\Auth;
 
 class SoldStatusController extends Controller
@@ -58,7 +59,8 @@ class SoldStatusController extends Controller
             return response()->json(['status'=>'true' , 'message' => 'sold status data add successfully'] , 200);
         }else{
              return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
-        }    }
+        }    
+    }
 
     /**
      * Display the specified resource.
@@ -79,7 +81,9 @@ class SoldStatusController extends Controller
      */
     public function edit($id)
     {
-        //
+      $getSingleData = SoldStatus::find($id);
+        // return $getSingleData->id;
+      return \View::make('mady-skincare/Inventory/SoldStatus/sold-status-update' , compact('getSingleData'));
     }
 
     /**
@@ -89,9 +93,27 @@ class SoldStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSoldStatus $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      $findData = SoldStatus::find($id);
+
+      $findData->product_name = $validatedData['product_name'];
+      $findData->date = $validatedData['date'];
+      $findData->packs_sold = $validatedData['packs_sold'];
+      $findData->packs_in_hand = $validatedData['packs_in_hand'];
+      $findData->amount_received = $validatedData['amount_received'];
+  
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+
+
+       if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'sold status data updated successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**

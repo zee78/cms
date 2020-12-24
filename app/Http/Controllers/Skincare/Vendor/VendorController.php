@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vendor;
 use App\Http\Requests\StoreVendor;
+use App\Http\Requests\UpdateVendor;
 use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
@@ -77,7 +78,10 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Vendor::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/Vendors/vendor-update' , compact('getSingleData'));
     }
 
     /**
@@ -87,9 +91,26 @@ class VendorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateVendor $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      $findData = Vendor::find($id);
+
+      $findData->vendor_type = $validatedData['vendor_type'];
+      $findData->vendor_name = $validatedData['vendor_name'];
+      $findData->phoneNo = $validatedData['phoneNo'];
+      $findData->address = $validatedData['address'];
+
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+
+
+       if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'vendor data updated successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**

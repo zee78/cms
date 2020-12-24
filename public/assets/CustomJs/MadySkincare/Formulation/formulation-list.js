@@ -92,7 +92,7 @@ $(document).ready(()=>{
 
   });
 
-  function deleteVendor(id) {
+  function deleteFormulation(id) {
     $("#deleteModel").modal('show');
     $("#formulationId").val(id);
   }

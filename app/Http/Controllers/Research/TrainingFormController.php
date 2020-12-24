@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Research;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreTrainingForm;
+use App\Http\Requests\UpdateTrainingForm;
 use App\Models\TrainingForm;
 use Illuminate\Support\Facades\Auth;
 class TrainingFormController extends Controller
@@ -82,7 +83,10 @@ class TrainingFormController extends Controller
      */
     public function edit($id)
     {
-        //
+      $getSingleData = TrainingForm::find($id);
+        // return $getSingleData->id;
+
+      return \View::make('research/TrainingForm/training-form-update' , compact('getSingleData'));
     }
 
     /**
@@ -92,9 +96,27 @@ class TrainingFormController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateTrainingForm $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      $findData = TrainingForm::find($id);
+
+      $findData->title = $validatedData['title'];
+      $findData->type = $validatedData['type'];
+      $findData->date = $validatedData['date'];
+      $findData->speaker = $validatedData['speaker'];
+      $findData->participant_numbers = $validatedData['number_participants'];
+      $findData->total_amount_received = $validatedData['total_amount_received'];
+      $findData->total_amount_spent = $validatedData['total_amount_spent'];
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+
+      if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'Training data updated successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**

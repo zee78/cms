@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreFormulation extends FormRequest
+class UpdateFormulation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

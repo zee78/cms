@@ -17,7 +17,7 @@
 								<li class="breadcrumb-item active" aria-current="page">Sales Dashboard</li>
 							</ol>
 						</div>
-						<div class="d-flex">
+						<!-- <div class="d-flex">
 							<div class="mr-2">
 								<a class="btn ripple btn-outline-primary dropdown-toggle mb-0" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 									<i class="fe fe-external-link"></i> Export <i class="fas fa-caret-down ml-1"></i>
@@ -34,12 +34,12 @@
 									<i class="fe fe-filter mr-1"></i>  Filter <i class="fas fa-caret-down ml-1"></i>
 								</a>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<!-- End Page Header -->
 
 					<!--Navbar-->
-					<div class="responsive-background">
+					<!-- <div class="responsive-background">
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<div class="advanced-search">
 								<div class="row align-items-center">
@@ -266,11 +266,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!--End Navbar -->
 @endsection
 @section('content')
-					<div class="row row-sm">
+					<!-- <div class="row row-sm">
 						<div class="col-sm-6 col-xl-3 col-lg-6">
 							<div class="card custom-card">
 								<div class="card-body dash1">
@@ -359,12 +359,15 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!--End  Row -->
 
 					<!-- Row -->
-					<div class="row row-sm">
-						<div class="col-sm-12 col-xl-8 col-lg-8">
+					<div class="row row-sm justify-content-center mt-5 pt-5">
+						<div class="col-sm-12 col-xl-6 col-lg-6">
+							<h3 class="main-content-title tx-24 mg-b-5">Welcome To Cyntax Health Project Management System</h3>
+						</div>
+						<!-- <div class="col-sm-12 col-xl-8 col-lg-8">
 							<div class="card custom-card overflow-hidden">
 								<div class="card-body">
 									<div class="card-option d-flex">
@@ -439,12 +442,12 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<!-- End Row -->
 
 					<!-- Row -->
-					<div class="row row-sm">
+					<!-- <div class="row row-sm">
 						<div class="col-sm-12 col-xl-4 col-lg-4">
 							<div class="card custom-card">
 								<div class="card-body">
@@ -689,11 +692,11 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- End Row -->
 
 					<!-- Row-->
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-sm-12 col-xl-12 col-lg-12">
 							<div class="card custom-card">
 								<div class="card-body">
@@ -793,7 +796,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 					<!-- End Row -->
 
 				</div>
