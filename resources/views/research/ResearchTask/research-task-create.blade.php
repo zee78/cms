@@ -53,9 +53,9 @@
 								<div class="form-group">
 									<label class="form-label">Project Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="project_type">
-										<option value="thesis">Thesis</option>
-										<option value="paper_writing">Paper Writing</option>
-										<option value="literature_review">Literature Review</option>
+										<option value="Thesis">Thesis</option>
+										<option value="Paper Writing">Paper Writing</option>
+										<option value="Literature Review">Literature Review</option>
 									</select>
 								</div>
 							</div>
@@ -68,10 +68,10 @@
 								<div class="form-group">
 									<label class="form-label">Funder Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="funder_type">
-										<option value="student">Student</option>
-										<option value="professional">Professional</option>
-										<option value="national_organization">National Organization</option>
-										<option value="international_organization">International Organization</option>
+										<option value="Student">Student</option>
+										<option value="Professional">Professional</option>
+										<option value="National Organization">National Organization</option>
+										<option value="International Organization">International Organization</option>
 									</select>
 								</div>
 							    </div>
@@ -140,8 +140,8 @@
 								<div class="form-group">
 									<label class="form-label">Status: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="status">
-										<option value="in_process">In Process</option>
-										<option value="completed">Completed</option>
+										<option value="In Process">In Process</option>
+										<option value="Completed">Completed</option>
 									</select>
 								</div>
 							    </div>

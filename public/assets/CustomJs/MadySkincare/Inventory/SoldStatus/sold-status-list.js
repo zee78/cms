@@ -20,14 +20,18 @@ $(document).ready(()=>{
          { data: "packs_sold" },
          { data: "packs_in_hand" },
          { data: "amount_received" },
-        //  { render : function(data, type, row , full) {
-        //     return `
-        //     <div class="glyph">
-        //         <a href="/roles/assign-permissions/`+row[0]+`"> <i class="glyph-icon iconsminds-tag primary"></i> </a>
-        //     </div>
-        //     `
-        // }
-        //     },
+        { render : function(data, type, row , full) {
+          // console.log(row)
+            return `
+            <div class="glyph">
+                <a href="/skincare/inventory/soldstatus/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
+                <a class="modal-effect" data-effect="effect-scale" data-toggle="modal" href="#" onclick="deleteBatch('`+row.id+`')"> <i class="typcn typcn-trash"></i> </a>
+            </div>
+
+
+            `
+           }
+         },
        //   { render : function(data, type, row) {
        //     return `
        //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
@@ -52,4 +56,44 @@ $(document).ready(()=>{
      
 	});
 
+  // ******************** ******************************* confirm delete ajax **********************
+
+
+  $('#deleteData').on('submit' , function(event){
+    event.preventDefault();
+    var data = $("#deleteData").serialize();
+    $soldStatusId = $("#soldStatusId").val();
+    console.log($soldStatusId)
+
+       $.ajax({
+        url: '/skincare/inventory/soldstatus/'+$soldStatusId,
+        type: 'DELETE',
+        data: data,
+        processData: false,
+
+        success: (response)=>{
+            
+            if (response.status == 'true') {
+
+                $.notify(response.message , 'success'  );
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/inventory/soldstatus";
+
+            }else{
+                $.notify(response.message , 'error');
+
+            }
+        },
+        error: (errorResponse)=>{
+            $.notify( errorResponse, 'error'  );
+
+
+        }
+    })
+
+    });
+
 });
+function deleteBatch(id) {
+  $("#deleteModel").modal('show');
+  $("#soldStatusId").val(id);
+}

@@ -80,6 +80,18 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = CROProject::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'Cro Project data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
+    }
+    public function datatable()
+    {
+        return \response()->json(CROProject::orderBy('id')->get() , 200);
+        # code...
     }
 }

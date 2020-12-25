@@ -150,6 +150,7 @@ var createFormData = new FormData (formData);
         success: (response)=>{
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/research-task/";
             }else{
                 $.notify(response.message , 'error');
 

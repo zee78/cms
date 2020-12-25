@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Research;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreResearchTask;
+use App\Http\Requests\UpdateResearchTask;
 use App\Models\Research;
 use Illuminate\Support\Facades\Auth;
 class ResearchController extends Controller
@@ -85,7 +86,10 @@ class ResearchController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Research::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('research/ResearchTask/research-task-update' , compact('getSingleData'));
     }
 
     /**
@@ -95,9 +99,32 @@ class ResearchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateResearchTask $request, $id)
     {
-        //
+      $validatedData = $request->validated();
+
+      // return $validatedData;
+      $findData = Research::find($id);
+
+      $findData->research_id = 'RSH-000001';
+      $findData->title = $validatedData['title'];
+      $findData->project_type = $validatedData['project_type'];
+      $findData->funder_type = $validatedData['funder_type'];
+      $findData->funder_name = $validatedData['funder_name'];
+      $findData->amount = $validatedData['amount'];
+      $findData->start_date = $validatedData['start_date'];
+      $findData->end_date = $validatedData['end_date'];
+      $findData->team_lead = $validatedData['team_lead'];
+      $findData->team_members = $validatedData['team_members'];
+      $findData->task_status = $validatedData['status'];
+      $findData->status = '1';
+      $findData->created_by = Auth::id();
+      
+      if ($findData->save()) {
+          return response()->json(['status'=>'true' , 'message' => 'Research data updated successfully'] , 200);
+      }else{
+           return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+      }
     }
 
     /**
@@ -108,7 +135,14 @@ class ResearchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Research::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'research data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
     public function datatable()
     {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Research;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFunder;
+use App\Http\Requests\UpdateFunder;
 use App\Models\Funder;
 use Illuminate\Support\Facades\Auth;
 class FunderController extends Controller
@@ -78,7 +79,10 @@ class FunderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Funder::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('research/Funders/funder-update' , compact('getSingleData'));
     }
 
     /**
@@ -88,9 +92,27 @@ class FunderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateFunder $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = Funder::find($id);
+
+        $findData->funding_organization_name = $validatedData['funding_organization_name'];
+        $findData->website = $validatedData['website'];
+        $findData->email = $validatedData['email'];
+        $findData->phoneNo = $validatedData['phoneNo'];
+        $findData->team_lead = $validatedData['team_lead'];
+        $findData->funder_status = $validatedData['status'];
+        $findData->response = $validatedData['response'];
+        $findData->status = '1';
+        $findData->updated_by = Auth::id();
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'funder updated successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -101,7 +123,15 @@ class FunderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd($id);
+        $deleteData = Funder::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'Funder data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
     public function datatable()
     {

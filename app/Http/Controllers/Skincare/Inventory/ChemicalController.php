@@ -136,7 +136,14 @@ class ChemicalController extends Controller
      */
     public function destroy($id)
     {
-        return "delete";
+        $deleteData = Chemical::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'chemical data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
 
 

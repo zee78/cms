@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Skincare;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreFormulation;
+use App\Http\Requests\UpdateFormulation;
 use App\Models\Formulation;
 use Illuminate\Support\Facades\Auth;
 class FormulationController extends Controller
@@ -80,7 +81,10 @@ class FormulationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Formulation::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/Formulation/Formulation-update' , compact('getSingleData'));
     }
 
     /**
@@ -90,9 +94,29 @@ class FormulationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateFormulation $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = Formulation::find($id);
+
+        $findData->formulation_name = $validatedData['formulation_name'];
+        $findData->ingredient_name = $validatedData['ingredient_name'];
+        $findData->quantity = $validatedData['quantity'];
+        $findData->equipment_used = $validatedData['equipment_used'];
+        $findData->procedure = $validatedData['procedure'];
+        $findData->container_used = $validatedData['container_used'];
+        $findData->label_type_used = $validatedData['label_type_used'];
+        $findData->pack_size = $validatedData['pack_size'];
+        $findData->status = '1';
+        $findData->created_by = Auth::id();
+
+
+         if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Formulation data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -103,7 +127,14 @@ class FormulationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deleteData = Formulation::find($id);
+        if($deleteData->delete()){
+            return response()->json(['status'=>'true' , 'message' => 'Formulation data deleted successfully'] , 200);
+
+        }else{
+            return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
+
+        }
     }
     public function datatable()
     {

@@ -11,10 +11,10 @@
 					<!-- Page Header -->
 					<div class="page-header">
 						<div>
-							<h2 class="main-content-title tx-24 mg-b-5">Empty Page</h2>
+							<h2 class="main-content-title tx-24 mg-b-5">Funders</h2>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#">Pages</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Empty Page</li>
+								<li class="breadcrumb-item active" aria-current="page">List</li>
 							</ol>
 						</div>
 						<div class="btn btn-list">
@@ -59,6 +59,7 @@
 													<th class="wd-20p">Team Lead</th>
 													<th class="wd-20p">Status</th>
 													<th class="wd-20p">Response</th>
+													<th class="wd-20p">Action</th>
 													
 												</tr>
 											</thead>
@@ -77,6 +78,30 @@
 				</div>
 			</div>
 			<!-- End Main Content-->
+						<!-- Modal effects -->
+			<div class="modal" id="deleteModel">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content modal-content-demo">
+						<div class="modal-header">
+							<h6 class="modal-title">Alert</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<form id="deleteData" > 
+							@csrf
+							 @method('DELETE')
+						<input type="hidden" name="funderId" id="funderId">
+						<div class="modal-body">
+							<h6></h6>
+							<p>are you sure you want to delete the record ?</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn ripple btn-danger" id="confirmDelete" type="submit"> Delete </button>
+							<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+						</div>
+					   </form>
+					</div>
+				</div>
+			</div>
+			<!-- End Modal effects-->
 @endsection
 @section('js')
 <!-- Data Table js -->
@@ -91,7 +116,9 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
+<script src="{{ URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+<script src="{{ URL::asset('assets/js/modal.js')}}"></script>
+<script src="{{ URL::asset('assets/js/notify.js') }}"></script>
 <!-- ********************** custom js file here *********************** -->
 <script src="{{ URL::asset('assets/CustomJs/Research/Funders/funder-list.js')}}"></script>
 

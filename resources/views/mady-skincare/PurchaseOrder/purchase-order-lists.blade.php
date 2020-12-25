@@ -13,10 +13,10 @@
 					<!-- Page Header -->
 					<div class="page-header">
 						<div>
-							<h2 class="main-content-title tx-24 mg-b-5">Empty Page</h2>
+							<h2 class="main-content-title tx-24 mg-b-5">Purchase Order</h2>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#">Pages</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Empty Page</li>
+								<li class="breadcrumb-item active" aria-current="page">List</li>
 							</ol>
 						</div>
 						<div class="btn btn-list">
@@ -71,10 +71,6 @@
 													<!-- <th class="wd-25p">Action</th> -->
 													
 													<th class="wd-25p">Change Order Status</th> 
-													
-
-													<!-- @can('order edit') -->
-                                                    <!-- @endcan -->
 												</tr>
 											</thead>
 											<tbody>
@@ -92,6 +88,30 @@
 				</div>
 			</div>
 			<!-- End Main Content-->
+						<!-- Modal effects -->
+			<div class="modal" id="deleteModel">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content modal-content-demo">
+						<div class="modal-header">
+							<h6 class="modal-title">Alert</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<form id="deleteData" > 
+							@csrf
+							 @method('DELETE')
+						<input type="hidden" name="purchaseId" id="purchaseId">
+						<div class="modal-body">
+							<h6></h6>
+							<p>are you sure you want to delete the record ?</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn ripple btn-danger" id="confirmDelete" type="submit"> Delete </button>
+							<button class="btn ripple btn-secondary" data-dismiss="modal" type="button">Close</button>
+						</div>
+					   </form>
+					</div>
+				</div>
+			</div>
+			<!-- End Modal effects-->
 @endsection
 @section('js')
 <!-- Data Table js -->
@@ -106,9 +126,15 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
+<<<<<<< HEAD
 <script src="{{ URL::asset('assets/js/notify.js') }}"></script>
 
 
+=======
+<script src="{{ URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+<script src="{{ URL::asset('assets/js/modal.js')}}"></script>
+<script src="{{ URL::asset('assets/js/notify.js') }}"></script>
+>>>>>>> d2d12bed98400cff6cd8c01034264d1b1d021211
 <!-- ********************** custom js file here *********************** -->
 <script src="{{ URL::asset('assets/CustomJs/MadySkincare/PurchaseOrder/purchase-order-lists.js')}}"></script>
 

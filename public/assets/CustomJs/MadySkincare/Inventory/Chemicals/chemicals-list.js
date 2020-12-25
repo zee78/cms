@@ -79,7 +79,7 @@ $(document).ready(()=>{
     event.preventDefault();
     var data = $("#deleteData").serialize();
     $chemicalId = $("#chemicalId").val();
-    console.log($batchId)
+    console.log($chemicalId)
 
        $.ajax({
         url: '/skincare/inventory/chemical/'+$chemicalId,
@@ -114,5 +114,5 @@ $(document).ready(()=>{
 
 function deleteBatch(id) {
   $("#deleteModel").modal('show');
-  $("#batchId").val(id);
+  $("#chemicalId").val(id);
 }
