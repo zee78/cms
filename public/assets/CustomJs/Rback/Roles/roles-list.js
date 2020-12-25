@@ -10,14 +10,12 @@ $(document).ready(()=>{
          { data : 'id'},
          { data: "name" },
          { data: "created_at" },
-        //  { render : function(data, type, row , full) {
-        //     return `
-        //     <div class="glyph">
-        //         <a href="/roles/assign-permissions/`+row[0]+`"> <i class="glyph-icon iconsminds-tag primary"></i> </a>
-        //     </div>
-        //     `
-        // }
-        //     },
+         { render : function(data, type, row , full) {
+            return `
+            <a href ="/roles/roles-assign-permissions/`+row.id+`"> <i class="typcn typcn-cog-outline"></i> </a>
+            `;
+           }
+            },
        //   { render : function(data, type, row) {
        //     return `
        //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">

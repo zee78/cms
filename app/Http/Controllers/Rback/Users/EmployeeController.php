@@ -10,6 +10,7 @@ use App\User;
 use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class EmployeeController extends Controller
@@ -67,7 +68,7 @@ class EmployeeController extends Controller
             $employeeModel->date_of_birth = $validatedData['dateOfBirth'];
             $employeeModel->address = $validatedData['address'];
             $employeeModel->status = '1';
-            $employeeModel->created_by = '1';
+            $employeeModel->created_by = Auth::id();
 
             $employeeModel->save();
 

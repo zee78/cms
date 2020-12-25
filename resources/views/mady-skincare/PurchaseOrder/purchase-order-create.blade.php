@@ -34,16 +34,17 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formOrderCreate">
 						@csrf
 						<div class="">
 							<div class="row">
-								<div class="col-lg-6 form-group">
+								<!-- <div class="col-lg-6 form-group">
 									<label class="form-label">Order No: <span class="tx-danger">*</span></label>
 									<input type="text" name="order_no" class="form-control" placeholder="Order No..">
-								</div>
+								</div> -->
 								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
 									<label class="form-label">Order Type: <span class="tx-danger">*</span></label>
 									<select name="vendor_type" class="form-control">
 										<option value="chemicals">Chemicals</option>
@@ -57,46 +58,79 @@
 										<option value="seals">Seals</option>
 									</select>
 								</div>
+									
+								</div>
 								<!-- ****************** employee last name *************** -->
-								
-							</div>
-							<div class="row">
+
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Order Placed By: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="placed_by" placeholder="Order Placed By" required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>  
+								
+							</div>
+							<div class="row">
+								
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Date: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
+
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
+									<label class="form-label">Vender Name: <span class="tx-danger">*</span></label>
+									<select class="form-control select2" name="vendor_name" id="vendor_name">
+										<option label="Choose one"></option>
+												        
+									</select>
+								</div>
+							    </div>
 							</div>
 							<div class="row">
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Vender Name: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="vendor_name" placeholder="Vendor Name" required="" type="text">
-								</div>
-								<div class="col-lg-6 form-group">
+								
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Cost: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="cost" placeholder="Enter Cost" required="" type="text">
 								</div>
-							</div>
-							<div class="row">
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Approved By: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="approved_by" placeholder="Approved by" required="" type="text">
-								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+
+							    <div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Order Procurement Person: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="procurement_person" placeholder="Order Procurement Person" required="" type="text">
 								</div>
+							    </div>
+							    
 							</div>
+							<!-- <div class="row">
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
+									<label class="form-label">Approved By: <span class="tx-danger">*</span></label>
+									<input class="form-control" name="approved_by" placeholder="Approved by" required="" type="text">
+								</div>
+							    </div>
+								
+							</div> -->
 							<div class="row">
-								<div class="col-lg-12 form-group">
+								<div class="col-md-6 col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Receiving Data: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="receiving_date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
+							    </div>
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Submit Purchase Order</button>
 						</div>
@@ -125,5 +159,6 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employee-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/PurchaseOrder/purchase-order-create.js')}}"></script>
+
 @endsection

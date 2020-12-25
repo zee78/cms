@@ -54,6 +54,7 @@
 													<th class="wd-20p">Sr#</th>
 													<th class="wd-25p">Name</th>
 													<th class="wd-20p">Created at</th>
+													<th class="wd-20p">Action</th>
 													
 												</tr>
 											</thead>

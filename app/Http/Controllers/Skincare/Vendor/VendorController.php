@@ -110,4 +110,12 @@ class VendorController extends Controller
         return \response()->json(Vendor::orderBy('id')->get() , 200);
 
     }
+
+    // ****************** get all vendor ***********************
+
+    public function select2(Request $request)
+    {
+        return response()->json(Vendor::where('vendor_name','like',"%$request->searchTerm%")->get(['id' , 'vendor_name']));
+        
+    }
 }

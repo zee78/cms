@@ -74,6 +74,7 @@
 						</li>
 						<li class="nav-label">Settings </li>
 
+						@if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('HR') || Auth::id() == '1')
 						  <li class="nav-item">
 							<a class="nav-link with-sub" href=""><i class="fe fe-aperture"></i><span class="sidemenu-label">Rback</span><i class="angle fe fe-chevron-right"></i></a>
 							<ul class="nav-sub">
@@ -89,6 +90,7 @@
 								
 							</ul>
 						</li>
+						@endif
 
 
 						<li class="mt-3">
