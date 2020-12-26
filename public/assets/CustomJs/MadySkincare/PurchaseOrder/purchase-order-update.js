@@ -76,7 +76,7 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formOrderCreate").validate({
+      $("#updatePurchaseOrder").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
@@ -157,11 +157,13 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = new FormData (formData);
+// var createFormData = new FormData (formData);
+var createFormData = $('#updatePurchaseOrder').serialize();
+var id = $('#purchaseId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/purchase-order',
-        type: 'POST',
+        url: '/skincare/purchase-order/'+id,
+        type: 'PATCH',
         data: createFormData,
         contentType: false,
         processData: false,

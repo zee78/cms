@@ -1,5 +1,5 @@
 			<!-- Sidebar -->
-			<div class="sidebar sidebar-right sidebar-animate">
+			<!-- <div class="sidebar sidebar-right sidebar-animate">
 				<div class="sidebar-icon">
 					<a href="#" class="text-right float-right text-dark fs-20" data-toggle="sidebar-right" data-target=".sidebar-right"><i class="fe fe-x"></i></a>
 				</div>
@@ -69,7 +69,7 @@
 							</div>
 							<div class="progress">
 								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" class="progress-bar progress-bar-xs wd-20p" role="progressbar"></div>
-							</div><!-- progress -->
+							</div>
 						</div>
 						<div class="main-traffic-detail-item">
 							<div>
@@ -77,7 +77,7 @@
 							</div>
 							<div class="progress">
 								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="15" class="progress-bar progress-bar-xs bg-secondary wd-15p" role="progressbar"></div>
-							</div><!-- progress -->
+							</div>
 						</div>
 						<div class="main-traffic-detail-item">
 							<div>
@@ -85,7 +85,7 @@
 							</div>
 							<div class="progress">
 								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" class="progress-bar progress-bar-xs bg-success wd-45p" role="progressbar"></div>
-							</div><!-- progress -->
+							</div>
 						</div>
 						<div class="main-traffic-detail-item">
 							<div>
@@ -93,7 +93,7 @@
 							</div>
 							<div class="progress">
 								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar progress-bar-xs bg-info wd-25p" role="progressbar"></div>
-							</div><!-- progress -->
+							</div>
 						</div>
 						<div class="main-traffic-detail-item">
 							<div>
@@ -101,9 +101,9 @@
 							</div>
 							<div class="progress">
 								<div aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" class="progress-bar progress-bar-xs bg-danger wd-25p" role="progressbar"></div>
-							</div><!-- progress -->
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- End Sidebar -->

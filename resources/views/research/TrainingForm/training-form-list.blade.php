@@ -60,6 +60,7 @@
 													<th class="wd-25p">Total Amount Received</th>
 													<th class="wd-25p">Total Amount Spent</th>
 													<th class="wd-25p">Action</th>
+													<th class="wd-25p">Change Status</th>
 												</tr>
 											</thead>
 											<tbody>

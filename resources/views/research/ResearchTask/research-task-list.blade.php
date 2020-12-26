@@ -63,7 +63,7 @@
 													<th class="wd-25p">Team Members</th>
 													<th class="wd-20p">Status</th>
 													<th class="wd-20p">Action</th>
-													
+													<th class="wd-25p">Change Status</th>
 												</tr>
 											</thead>
 											<tbody>

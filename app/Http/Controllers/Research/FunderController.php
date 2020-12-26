@@ -123,7 +123,6 @@ class FunderController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $deleteData = Funder::find($id);
         if($deleteData->delete()){
             return response()->json(['status'=>'true' , 'message' => 'Funder data deleted successfully'] , 200);
