@@ -92,7 +92,6 @@
 						</li>
 						@endif
 
-
 						<!-- <li class="mt-3">
 							<a class="btn ripple btn-success  btn-block text-white text-icon"><i class="fe fe-rotate-cw mr-1"></i>Upgrade to pro</a>
 							<a class="btn ripple btn-success  btn-block text-white iconbtn"><i class="fe fe-rotate-cw mr-1"></i></a>
