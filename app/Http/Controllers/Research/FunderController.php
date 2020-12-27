@@ -137,4 +137,26 @@ class FunderController extends Controller
         return \response()->json(Funder::orderBy('id')->get() , 200);
         # code...
     }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $funderFindModel = Funder::find($validatedData['orderId']);
+
+        $funderFindModel->approve_by = Auth::id();
+        $funderFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($funderFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Funder status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+    }
 }

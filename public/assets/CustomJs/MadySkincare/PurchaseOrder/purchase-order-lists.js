@@ -52,6 +52,7 @@ $(document).ready(()=>{
             
              return `
                      <select class="form-control select2" name="change_status" id="change_status" data-value="`+row.id+`" >
+                          <option>Select Status</option> 
                           <option value="PENDING">PENDING</option>              
                           <option value="APPROVE">APPROVE</option>              
                   </select>

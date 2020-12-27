@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('css')
 <!---DataTables css-->
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet">
@@ -59,6 +60,7 @@
 													<th class="wd-20p">Number Of Participants</th>
 													<th class="wd-25p">Total Amount Received</th>
 													<th class="wd-25p">Total Amount Spent</th>
+													<th class="wd-25p">Approval Status</th>
 													<th class="wd-25p">Action</th>
 													<th class="wd-25p">Change Status</th>
 												</tr>

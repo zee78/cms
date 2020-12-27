@@ -149,4 +149,27 @@ class ResearchController extends Controller
         return \response()->json(Research::orderBy('id')->get() , 200);
         # code...
     }
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $researchFindModel = Research::find($validatedData['orderId']);
+
+        $researchFindModel->approve_by = Auth::id();
+        $researchFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($researchFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Research task status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+
+
+    }
 }

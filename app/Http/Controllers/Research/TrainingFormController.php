@@ -141,4 +141,26 @@ class TrainingFormController extends Controller
         return \response()->json(TrainingForm::orderBy('id')->get() , 200);
         # code...
     }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $trainingFindModel = TrainingForm::find($validatedData['orderId']);
+
+        $trainingFindModel->approve_by = Auth::id();
+        $trainingFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($trainingFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Training form status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+    }
 }
