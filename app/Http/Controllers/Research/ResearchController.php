@@ -8,6 +8,7 @@ use App\Http\Requests\StoreResearchTask;
 use App\Http\Requests\UpdateResearchTask;
 use App\Models\Research;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class ResearchController extends Controller
 {
     /**
@@ -54,6 +55,8 @@ class ResearchController extends Controller
         $researchModel->team_lead = $validatedData['team_lead'];
         $researchModel->team_members = $validatedData['team_members'];
         $researchModel->task_status = $validatedData['status'];
+        $researchModel->approve_by = '0';
+        $researchModel->approval_status = Config::get('constants.status_pending');
         $researchModel->status = '1';
         $researchModel->created_by = Auth::id();
         

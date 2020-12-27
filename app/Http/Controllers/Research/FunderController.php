@@ -8,6 +8,7 @@ use App\Http\Requests\StoreFunder;
 use App\Http\Requests\UpdateFunder;
 use App\Models\Funder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class FunderController extends Controller
 {
     /**
@@ -51,6 +52,8 @@ class FunderController extends Controller
         $funderModel->funder_status = $validatedData['status'];
         $funderModel->response = $validatedData['response'];
         $funderModel->status = '1';
+        $funderModel->approve_by = '0';
+        $funderModel->approval_status = Config::get('constants.status_pending');
         $funderModel->created_by = Auth::id();
 
         if ($funderModel->save()) {

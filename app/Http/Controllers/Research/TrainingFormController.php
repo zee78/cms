@@ -8,6 +8,7 @@ use App\Http\Requests\StoreTrainingForm;
 use App\Http\Requests\UpdateTrainingForm;
 use App\Models\TrainingForm;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class TrainingFormController extends Controller
 {
     /**
@@ -51,6 +52,8 @@ class TrainingFormController extends Controller
         $trainingFormModel->total_amount_received = $validatedData['total_amount_received'];
         $trainingFormModel->total_amount_spent = $validatedData['total_amount_spent'];
         $trainingFormModel->status = '1';
+        $trainingFormModel->approve_by = '0';
+        $trainingFormModel->approval_status = Config::get('constants.status_pending');
         $trainingFormModel->created_by = Auth::id();
 
         if ($trainingFormModel->save()) {
