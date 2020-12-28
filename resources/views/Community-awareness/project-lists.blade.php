@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('css')
 <!---DataTables css-->
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet">
@@ -117,7 +118,9 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
+<script src="{{ URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+<script src="{{ URL::asset('assets/js/modal.js')}}"></script>
+<script src="{{ URL::asset('assets/js/notify.js') }}"></script>
 <!-- ********************** custom js file here *********************** -->
 <script src="{{ URL::asset('assets/CustomJs/CommunityAwareness/project-lists.js')}}"></script>
 

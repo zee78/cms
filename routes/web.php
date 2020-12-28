@@ -99,18 +99,16 @@ Route::group(['prefix' => 'cro'], function () {
 });
 //********************* CRO *********************//
 Route::group(['prefix' => 'community-awareness'], function () {
+	Route::post('/project/change-status', 'CommunityAwareness\ProjectController@changeStatus');
 	Route::get('/project/datatable', 'CommunityAwareness\ProjectController@datatable');
 	Route::resource('/project', 'CommunityAwareness\ProjectController');
 });
-Route::group(['prefix' => 'skincare'], function () {
-	// Route::get('/add-formulation', 'AdminController@add_formulation');
-	// Route::get('/add-chemicals', 'AdminController@add_chemicals');
-	// Route::get('/add-glassware', 'AdminController@add_glassware');
-	// Route::get('/add-equipment', 'AdminController@add_equipment');
-	// Route::get('/add-batch', 'AdminController@add_batch');
-	// Route::get('/add-sold-status', 'AdminController@add_sold_status');
-	// Route::get('/add-vendors', 'AdminController@add_vendors');
+
+// Chat
+Route::get('/inbox' , function(){
+	return view('inbox');
 });
+
 // Route::get('/{page}', 'AdminController@index');
 Auth::routes();
 

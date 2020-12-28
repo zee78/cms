@@ -120,7 +120,9 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-
+<script src="{{ URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
+<script src="{{ URL::asset('assets/js/modal.js')}}"></script>
+<script src="{{ URL::asset('assets/js/notify.js') }}"></script>
 <!-- ********************** custom js file here *********************** -->
 <script src="{{ URL::asset('assets/CustomJs/cro/project-lists.js')}}"></script>
 

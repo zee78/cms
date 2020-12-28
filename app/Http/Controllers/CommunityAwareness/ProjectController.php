@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CommunityAwareness;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCommunityProject;
+use App\Http\Requests\UpdateCommunityProject;
 use App\Models\CommunityProject;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Config;
@@ -83,7 +84,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = CommunityProject::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('Community-awareness/project-update' , compact('getSingleData'));
     }
 
     /**
@@ -93,9 +97,29 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommunityProject $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = CommunityProject::find($id);
+
+        $findData->project_id = IdGenerator::generate(['table' => 'community_projects', 'length' => 13, 'field' => 'project_id', 'prefix' => 'PROJ-']);
+        $findData->project_name = $validatedData['project_name'];
+        $findData->team_lead = $validatedData['team_lead'];
+        $findData->team_members = $validatedData['team_members'];
+        $findData->start_date = $validatedData['start_date'];
+        $findData->end_date = $validatedData['end_date'];
+        $findData->monthly_progress = $validatedData['start_date'];
+        $findData->order_status = Config::get('constants.status_process');
+        $findData->status = '1';
+        $findData->created_by = Auth::id();
+        dd($findData);
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'community Project updated add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -113,6 +137,28 @@ class ProjectController extends Controller
         }else{
             return response()->json(['status'=>'error' , 'message' => 'error occured please try again'] , 200);
 
+        }
+    }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $funderFindModel = CommunityProject::find($validatedData['orderId']);
+
+        // $funderFindModel->approve_by = Auth::id();
+        $funderFindModel->order_status = $validatedData['orderStatus'];
+
+        if ($funderFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Project status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
         }
     }
     public function datatable()
