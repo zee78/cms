@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateFunder;
 use App\Models\Funder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+
 class FunderController extends Controller
 {
     /**
@@ -44,6 +46,7 @@ class FunderController extends Controller
 
         $funderModel = new Funder();
 
+        $funderModel->funder_id = IdGenerator::generate(['table' => 'funders', 'length' => 13, 'field' => 'funder_id', 'prefix' => 'FUNDR-']);
         $funderModel->funding_organization_name = $validatedData['funding_organization_name'];
         $funderModel->website = $validatedData['website'];
         $funderModel->email = $validatedData['email'];
@@ -161,5 +164,15 @@ class FunderController extends Controller
         }else{
              return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
         }
+    }
+
+    // *************************** select2 *****************************
+
+    public function select2(Request $request)
+    {
+        return response()->json(Funder::where('funding_organization_name','like',"%$request->searchTerm%")->
+                                where('approval_status',Config::get('constants.status_approve'))->
+                                get(['id' , 'funding_organization_name']));
+        # code...
     }
 }

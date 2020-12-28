@@ -47,6 +47,9 @@ Route::group(['prefix' => 'research'], function () {
 	Route::get('/research-task/datatable' , 'Research\ResearchController@datatable');
 	Route::resource('/research-task' , 'Research\ResearchController');
 	Route::post('/funders/change-status', 'Research\FunderController@changeStatus');
+
+
+	Route::get('/funders/select2' , 'Research\FunderController@select2');
 	Route::get('/funders-datatable' , 'Research\FunderController@datatable');
 	Route::resource('/funders' , 'Research\FunderController');
 	Route::post('/training-form/change-status', 'Research\TrainingFormController@changeStatus');

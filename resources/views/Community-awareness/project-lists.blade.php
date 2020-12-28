@@ -52,6 +52,7 @@
 											<thead>
 												<tr>
 													<th class="wd-20p">Sr#</th>
+													<th class="wd-20p">Project Id</th>
 													<th class="wd-25p">Project Name</th>
 													<th class="wd-25p">Team Lead</th>
 													<th class="wd-25p">Team Members</th>
@@ -60,6 +61,7 @@
 													<th class="wd-25p">Monthly Progress</th>
 													<th class="wd-25p">Status</th>
 													<th class="wd-20p">Action</th>
+													<th class="wd-20p">status Change</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -117,6 +119,6 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/CommunityAwareness/project-list.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/CommunityAwareness/project-lists.js')}}"></script>
 
 @endsection

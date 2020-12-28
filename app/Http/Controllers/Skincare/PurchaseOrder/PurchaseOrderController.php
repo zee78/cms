@@ -73,7 +73,6 @@ class PurchaseOrderController extends Controller
              return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
         }
 
-        return $validatedData;
     }
 
     /**

@@ -64,6 +64,7 @@
 													<th class="wd-25p">Team Members</th>
 													<th class="wd-25p">Status</th>
 													<th class="wd-20p">Action</th>
+													<th class="wd-20p">Status Change</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -121,6 +122,6 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
 
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Cro/project-list.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/cro/project-lists.js')}}"></script>
 
 @endsection

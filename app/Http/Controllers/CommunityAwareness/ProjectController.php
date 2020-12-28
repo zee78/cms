@@ -4,6 +4,12 @@ namespace App\Http\Controllers\CommunityAwareness;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCommunityProject;
+use App\Models\CommunityProject;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\Config;
+use JavaScript;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -33,9 +39,29 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCommunityProject $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $communityProjectModel = new CommunityProject();
+
+        $communityProjectModel->project_id = IdGenerator::generate(['table' => 'community_projects', 'length' => 13, 'field' => 'project_id', 'prefix' => 'PROJ-']);
+        $communityProjectModel->project_name = $validatedData['project_name'];
+        $communityProjectModel->team_lead = $validatedData['team_lead'];
+        $communityProjectModel->team_members = $validatedData['team_members'];
+        $communityProjectModel->start_date = $validatedData['start_date'];
+        $communityProjectModel->end_date = $validatedData['end_date'];
+        $communityProjectModel->monthly_progress = $validatedData['start_date'];
+        $communityProjectModel->order_status = Config::get('constants.status_process');
+        $communityProjectModel->status = '1';
+        $communityProjectModel->created_by = Auth::id();
+
+
+        if ($communityProjectModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'community Project data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**

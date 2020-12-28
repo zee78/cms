@@ -34,53 +34,75 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formCommunityAwrProjectCreate">
 						@csrf
 						<div class="">
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-12 form-group">
+								<div class="col-md-6 col-lg-6">
+									<div class="form-group">
 									<label class="form-label">Project Name: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="project_name" placeholder="Project Name" required="" type="text">
 								</div>
+									
+								</div>
 								<!-- ****************** employee phone number *************** -->
-							</div>
-							<div class="row">
-								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6">
+								<div class="form-group">
 									<label class="form-label">Team Lead: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="team_lead" placeholder="Team lead" required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Team Members: </label>
-									<input class="form-control" type="text" name="team_members" placeholder="Team members">
-								</div>
-								<!-- ****************** employee phone number *************** -->
+							    </div>
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								
+								<div class="col-lg-6">
+
+								<div class="form-group">
+									<label class="form-label">Team Members: </label>
+									<input class="form-control" type="text" name="team_members" placeholder="Team members">
+								</div>
+							    </div>
+								<!-- ***************** eployee email  -->
+								<div class="col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Start Date: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="start_date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+							</div>
+							<div class="row">
+								
+								<div class="col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">End Date: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="end_date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
-							</div>
-							<div class="row">
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Monthly Progress: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="monthly_progress" placeholder="Monthly progress " required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+							</div>
+							<div class="row">
+								
+								<!-- <div class="col-lg-6">
+
+								<div class="form-group">
 									<label class="form-label">Status</label>
 									<select class="form-control" name="status">
 										<option value="in_process">In Process</option>
 										<option value="completed">Completed</option>
 									</select>
 								</div>
+							    </div> -->
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Submit Project</button>
 						</div>

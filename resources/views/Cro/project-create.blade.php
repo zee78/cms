@@ -34,16 +34,13 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formCroProjectCreate">
 						@csrf
 						<div class="">
 							<div class="row">
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Project ID: <span class="tx-danger">*</span></label>
-									<input type="text" name="project_id" class="form-control" placeholder="Project ID">
-								</div>
 								<!-- ***************** eployee first name  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+									<div class="form-group">
 									<label class="form-label">Project Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="project_type">
 										<option value="Lab Based">Lab Based</option>
@@ -51,15 +48,23 @@
 										<option value="Literature Based">Literature Based</option>
 									</select>
 								</div>
+									
+								</div>
 								<!-- ****************** employee last name *************** -->
-							</div>
-							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
 									<label class="form-label">Title: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="title" placeholder="Project Title" required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+							</div>
+							<div class="row">
+								<div class="col-lg-6 col-md-6">
+
+								
+								<div class="form-group">
 									<label class="form-label">Funder Type: <span class="tx-danger">*</span></label>
 									<select class="form-control" name="funder_type">
 										<option value="Professional">Professional</option>
@@ -67,52 +72,82 @@
 										<option value="International Organization">International Organization</option>
 									</select>
 								</div>
+
+							    </div>
 								<!-- ****************** employee phone number *************** -->
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
+									<label class="form-label">Funder name: </label>
+									<!-- <input class="form-control" type="text" name="funder_name" placeholder="Funder name"> -->
+									<select class="form-control select2" name="funder_name" id="funder_name">
+										<option label="Choose one"></option>
+												        
+									</select>
+								</div>
+
+
+							    </div>
+
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Funder name: </label>
-									<input class="form-control" type="text" name="funder_name" placeholder="Funder name">
-								</div>
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+								
+								<div class="form-group">
 									<label class="form-label">Amount: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="amount" placeholder="Amount" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
+								<div class="col-lg-6 col-md-6">
+
+								<div class="form-group">
+									<label class="form-label">Start Date: <span class="tx-danger">*</span></label>
+									<input class="form-control fc-datepicker" name="start_date" placeholder="MM/DD/YYYY" required="" type="text">
+
+							 	</div>
+							    </div>
 							</div>
 							<div class="row">
 								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
-									<label class="form-label">Start Date: <span class="tx-danger">*</span></label>
-									<input class="form-control fc-datepicker" name="start_date" placeholder="MM/DD/YYYY" required="" type="text">
-								</div>
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+								
+								<div class="form-group">
 									<label class="form-label">End Date: <span class="tx-danger">*</span></label>
 									<input class="form-control fc-datepicker" name="end_date" placeholder="MM/DD/YYYY" required="" type="text">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
-							</div>
-							<div class="row">
-								<!-- ***************** eployee email  -->
-								<div class="col-lg-6 form-group">
+								<div class="col-lg-6 col-md-6">
+
+									<div class="form-group">
 									<label class="form-label">Team Lead: <span class="tx-danger">*</span></label>
 									<input class="form-control" name="team_lead" placeholder="Team lead" required="" type="text">
 								</div>
-								<div class="col-lg-6 form-group">
+							    </div>
+							</div>
+							<div class="row">
+								<!-- ***************** eployee email  -->
+								<div class="col-lg-6 col-md-6">
+							
+								<div class="form-group">
 									<label class="form-label">Team Members: </label>
 									<input class="form-control" type="text" name="team_members" placeholder="Team members">
 								</div>
+							    </div>
 								<!-- ****************** employee phone number *************** -->
-							</div>
-							<div class="row">
-								<div class="col-lg-12 form-group">
+								<!-- div class="col-lg-6 form-group">
 									<label class="form-label">Status</label>
 									<select class="form-control" name="status">
 										<option value="in_process">In Process</option>
 										<option value="completed">Completed</option>
 									</select>
 								</div>
+ -->							</div>
+							<div class="row">
+								
 							</div>
 							<button class="btn ripple btn-primary pd-x-20" type="submit">Submit Project</button>
 						</div>
