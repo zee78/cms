@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('order_placed_by');
             $table->string('order_date');
             $table->string('cost');
-            $table->Integer('approve_by');
+            $table->Integer('user_id')->nullable()->comment = "approve_by";
             $table->string('order_procurement_by');
             $table->string('order_receiving_date');
             $table->string('order_status');

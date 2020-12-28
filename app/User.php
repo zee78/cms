@@ -47,5 +47,13 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Employee');
     }
+
+
+    // ******* order *********
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
     
 }

@@ -59,7 +59,6 @@ class PurchaseOrderController extends Controller
         $orderModel->order_placed_by = $validatedData['placed_by'];
         $orderModel->order_date = $validatedData['date'];
         $orderModel->cost = $validatedData['cost'];
-        $orderModel->approve_by = '0';
         $orderModel->order_procurement_by = $validatedData['procurement_person'];
         $orderModel->order_receiving_date = $validatedData['receiving_date'];
         $orderModel->order_status = Config::get('constants.status_pending');
@@ -132,7 +131,7 @@ class PurchaseOrderController extends Controller
 
     public function datatable()
     {
-        return \response()->json(Order::with('Vendor')->orderBy('id')->get() , 200);
+        return \response()->json(Order::with('Vendor' , 'user')->orderBy('id')->get() , 200);
         
     }
 
@@ -150,7 +149,7 @@ class PurchaseOrderController extends Controller
 
         $orderFindModel = Order::find($validatedData['orderId']);
 
-        $orderFindModel->approve_by = Auth::id();
+        $orderFindModel->user_id = Auth::id();
         $orderFindModel->order_status = $validatedData['orderStatus'];
 
         if ($orderFindModel->save()) {

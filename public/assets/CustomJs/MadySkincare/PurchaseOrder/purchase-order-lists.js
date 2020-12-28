@@ -31,7 +31,16 @@ $(document).ready(()=>{
            { data: "order_date" },
            { data: "vendor.vendor_name" },
            { data: "cost" },
-           { data: "approve_by" },
+           { render : function(data, type, row , full) {
+            // console.log(row.)
+            if(row.user == null || row.user == undefined){
+              return 'Not Approved Yet'
+            }else{
+              return row.user.first_name+ ' '+row.user.last_name;
+
+            }
+             }
+           },
            { data: "order_procurement_by" },
            { data: "order_receiving_date" },
            { data: "order_status" },
@@ -51,7 +60,7 @@ $(document).ready(()=>{
            { render : function(data, type, row) {
             
              return `
-                     <select class="form-control select2" name="change_status" id="change_status" data-value="`+row.id+`" >
+                     <select class="form-control" name="change_status" id="change_status`+row.id+`" data-value="`+row.id+`" >             
                           <option value="PENDING">PENDING</option>              
                           <option value="APPROVE">APPROVE</option>              
                   </select>
@@ -71,11 +80,20 @@ $(document).ready(()=>{
        return nRow;
        },
        "drawCallback": function( settings ) {
-        // this.columns(0).visible(false);
-        //  var api = this.api();
-        //  console.log(api.columns( 0 ) )
-        // // Output the data for the visible rows to the browser's console
+         var api = this.api();
+  
         // console.log( api.rows( {page:'current'} ).data() );
+        $.each(api.rows( {page:'current'} ).data()  , (index , value )=>{
+        console.log(value.id)
+         // $("#change_status: selected").val(value.order_status)
+        // console.log("#change_status"+value.id)
+        // console.log($("#change_status1").val('APPROVE') )
+        $('#change_status1 option').val('APPROVE').prop('selected', true)
+       //  console.log($("#change_status1 option[value=APPROVE]").attr("selected", true) )
+       // console.log ( document.querySelector("#change_status1 option[value='APPROVE']").setAttribute('selected',true) )
+
+        })
+        // $("#change_status").val(api.rows( {page:'current'} ).data()[0]['order_status'])
       }
 
       });
