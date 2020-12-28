@@ -50,8 +50,8 @@
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
-										@can('order edit'))
-										<h1>hello</h1>
+										@can('order edit')
+										<!-- <h1>hello</h1> -->
 													@endcan
 										<table class="table" id="tblOrder">
 											<thead>
@@ -126,15 +126,10 @@
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.html5.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.print.min.js')}}"></script>
 <script src="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.colVis.min.js')}}"></script>
-<<<<<<< HEAD
-<script src="{{ URL::asset('assets/js/notify.js') }}"></script>
 
-
-=======
 <script src="{{ URL::asset('assets/plugins/ionicons/ionicons.js')}}"></script>
 <script src="{{ URL::asset('assets/js/modal.js')}}"></script>
 <script src="{{ URL::asset('assets/js/notify.js') }}"></script>
->>>>>>> d2d12bed98400cff6cd8c01034264d1b1d021211
 <!-- ********************** custom js file here *********************** -->
 <script src="{{ URL::asset('assets/CustomJs/MadySkincare/PurchaseOrder/purchase-order-lists.js')}}"></script>
 

@@ -68,7 +68,7 @@
 										<h6 class="main-notification-title"> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </h6>
 										<p class="main-notification-text">{{ Auth::user()->email }}</p>
 									</div>
-									<a class="dropdown-item border-top" href="">
+									<!-- <a class="dropdown-item border-top" href="">
 										<i class="fe fe-user"></i> My Profile
 									</a>
 									<a class="dropdown-item" href="">
@@ -82,17 +82,17 @@
 									</a>
 									<a class="dropdown-item" href="">
 										<i class="fe fe-compass"></i> Activity
-									</a>
+									</a> -->
 									<a class="dropdown-item" href="{{ url('/logout') }}">
 										<i class="fe fe-power"></i> Sign Out
 									</a>
 								</div>
 							</div>
-							<div class="dropdown d-md-flex header-settings">
+							<!-- <div class="dropdown d-md-flex header-settings">
 								<a href="#" class="nav-link icon" data-toggle="sidebar-right" data-target=".sidebar-right">
 									<i class="fe fe-align-right"></i>
 								</a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>

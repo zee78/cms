@@ -1,3 +1,10 @@
+// ********* providde convenient CSRF protection for your AJAX based applications *****
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 $(document).ready(()=>{
   
   $('#tblFunder').DataTable({
@@ -15,6 +22,7 @@ $(document).ready(()=>{
          { data: "team_lead" },
          { data: "funder_status" },
          { data: "response" },
+         { data: "approval_status" },
         { render : function(data, type, row , full) {
           // console.log(row)
             return `
@@ -26,16 +34,18 @@ $(document).ready(()=>{
 
             `
            }
-         },
-       //   { render : function(data, type, row) {
-       //     return `
-       //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">
-       //                 <input type="checkbox" class="custom-control-input">
-       //                 <span class="custom-control-label">&nbsp;</span>
-       //             </label>
-       //     `
-       // }
-       //     },
+        },
+        { render : function(data, type, row) {
+            
+             return `
+                     <select class="form-control select2" name="change_status" id="change_status" data-value="`+row.id+`" >
+                          <option>Select Status</option> 
+                          <option value="PENDING">PENDING</option>              
+                          <option value="APPROVE">APPROVE</option>              
+                  </select>
+             `
+          }
+        },
        ],
     language: {
       searchPlaceholder: 'Search...',
@@ -50,6 +60,35 @@ $(document).ready(()=>{
      },
      
   });
+
+    $(document).on("change", "select[name='change_status']", function(){
+     // console.log(this.value);
+     // console.log($(this).data("value"))
+
+      $.ajax({
+        url: '/research/funders/change-status',
+        type: 'POST',
+        data: {orderStatus: this.value , orderId: $(this).data("value")},
+        // contentType: false,
+        // processData: false,
+
+        success: (response)=>{
+            if (response.status == 'true') {
+                $.notify(response.message , 'success'  );
+              $('#tblFunder').DataTable().ajax.reload();
+
+            }else{
+                $.notify(response.message , 'error');
+
+            }
+        },
+        error: (errorResponse)=>{
+            $.notify( errorResponse, 'error'  );
+
+
+        }
+      })
+    })
 
   // ******************** ******************************* confirm delete ajax **********************
 

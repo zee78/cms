@@ -34,7 +34,7 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formOrderCreate">
+					<form  id="updatePurchaseOrder">
 						@csrf
 						<div class="">
 							<div class="row">
@@ -42,11 +42,13 @@
 									<label class="form-label">Order No: <span class="tx-danger">*</span></label>
 									<input type="text" name="order_no" class="form-control" placeholder="Order No..">
 								</div> -->
+								<input class="form-control" type="hidden" id="purchaseId" value="{{ $getSingleData->id }}">
 								<!-- ***************** eployee first name  -->
 								<div class="col-md-6 col-lg-6">
 									<div class="form-group">
 									<label class="form-label">Order Type: <span class="tx-danger">*</span></label>
 									<select name="vendor_type" class="form-control">
+										<option value="{{ $getSingleData->order_type }}" selected> {{ $getSingleData->order_type }}</option>
 										<option value="Chemicals">Chemicals</option>
 										<option value="Glassware">Glassware</option>
 										<option value="Containers">Containers</option>
@@ -58,18 +60,15 @@
 										<option value="Seals">Seals</option>
 									</select>
 								</div>
-									
 								</div>
 								<!-- ****************** employee last name *************** -->
-
 								<!-- ***************** eployee email  -->
 								<div class="col-md-6 col-lg-6">
-
-								<div class="form-group">
-									<label class="form-label">Order Placed By: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="placed_by" placeholder="Order Placed By" required="" type="text">
-								</div>
-							    </div>  
+									<div class="form-group">
+										<label class="form-label">Order Placed By: <span class="tx-danger">*</span></label>
+										<input class="form-control" name="placed_by" placeholder="Order Placed By" required="" type="text" value="{{ $getSingleData->order_placed_by }}">
+									</div>
+							  </div>  
 								
 							</div>
 							<div class="row">
@@ -78,7 +77,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Date: <span class="tx-danger">*</span></label>
-									<input class="form-control fc-datepicker" name="date" placeholder="MM/DD/YYYY" required="" type="text">
+									<input class="form-control fc-datepicker" name="date" placeholder="MM/DD/YYYY" required="" type="text" value="{{ $getSingleData->order_date }}">
 								</div>
 							    </div>
 								<!-- ****************** employee phone number *************** -->
@@ -89,6 +88,7 @@
 									<label class="form-label">Vender Name: <span class="tx-danger">*</span></label>
 									<select class="form-control select2" name="vendor_name" id="vendor_name">
 										<option label="Choose one"></option>
+										<!-- <option value="{{ $getSingleData->vendor_name }}" selected>{{ $getSingleData->vendor_name }}</option> -->
 												        
 									</select>
 								</div>
@@ -100,7 +100,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Cost: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="cost" placeholder="Enter Cost" required="" type="text">
+									<input class="form-control" name="cost" placeholder="Enter Cost" required="" type="text" value="{{ $getSingleData->cost }}">
 								</div>
 							    </div>
 
@@ -108,7 +108,7 @@
 
 								<div class="form-group">
 									<label class="form-label">Order Procurement Person: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="procurement_person" placeholder="Order Procurement Person" required="" type="text">
+									<input class="form-control" name="procurement_person" placeholder="Order Procurement Person" required="" type="text" value="{{ $getSingleData->order_procurement_by }}">
 								</div>
 							    </div>
 							    
@@ -128,11 +128,11 @@
 
 								<div class="form-group">
 									<label class="form-label">Receiving Data: <span class="tx-danger">*</span></label>
-									<input class="form-control fc-datepicker" name="receiving_date" placeholder="MM/DD/YYYY" required="" type="text">
+									<input class="form-control fc-datepicker" name="receiving_date" placeholder="MM/DD/YYYY" required="" type="text" value="{{ $getSingleData->order_receiving_date }}">
 								</div>
 							    </div>
 							</div>
-							<button class="btn ripple btn-primary pd-x-20" type="submit">Submit Purchase Order</button>
+							<button class="btn ripple btn-primary pd-x-20" type="submit">Update Purchase Order</button>
 						</div>
 					</form>
 				</div>
@@ -159,6 +159,6 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/MadySkincare/PurchaseOrder/purchase-order-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/PurchaseOrder/purchase-order-update.js')}}"></script>
 
 @endsection

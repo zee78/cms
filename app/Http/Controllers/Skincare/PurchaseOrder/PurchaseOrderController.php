@@ -5,6 +5,7 @@ namespace App\Http\Controllers\SKincare\PurchaseOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrder;
+use App\Http\Requests\UpdateOrder;
 use App\Models\Order;
 use App\Models\Vendor;
 // use App\User;
@@ -67,7 +68,7 @@ class PurchaseOrderController extends Controller
 
 
         if ($orderModel->save()) {
-            return response()->json(['status'=>'true' , 'message' => 'Trend Analysis data add successfully'] , 200);
+            return response()->json(['status'=>'true' , 'message' => 'Order data add successfully'] , 200);
         }else{
              return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
         }
@@ -94,7 +95,10 @@ class PurchaseOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Order::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/PurchaseOrder/purchase-order-update' , compact('getSingleData'));
     }
 
     /**
@@ -104,9 +108,33 @@ class PurchaseOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateOrder $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = Order::find($id);
+
+        $findData->order_id = IdGenerator::generate(['table' => 'orders', 'length' => 13, 'field' => 'order_id', 'prefix' => 'INV-']);
+        $findData->vendor_id = $validatedData['vendor_name'];
+        $findData->order_type = $validatedData['vendor_type'];
+        $findData->order_placed_by = $validatedData['placed_by'];
+        $findData->order_date = $validatedData['date'];
+        $findData->cost = $validatedData['cost'];
+        $findData->approve_by = '0';
+        $findData->order_procurement_by = $validatedData['procurement_person'];
+        $findData->order_receiving_date = $validatedData['receiving_date'];
+        $findData->order_status = Config::get('constants.status_pending');
+        $findData->status = '1';
+        $findData->created_by = Auth::id();
+
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Order data updated successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+
+        return $validatedData;
     }
 
     /**

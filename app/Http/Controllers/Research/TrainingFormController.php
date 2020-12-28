@@ -8,6 +8,7 @@ use App\Http\Requests\StoreTrainingForm;
 use App\Http\Requests\UpdateTrainingForm;
 use App\Models\TrainingForm;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class TrainingFormController extends Controller
 {
     /**
@@ -51,6 +52,8 @@ class TrainingFormController extends Controller
         $trainingFormModel->total_amount_received = $validatedData['total_amount_received'];
         $trainingFormModel->total_amount_spent = $validatedData['total_amount_spent'];
         $trainingFormModel->status = '1';
+        $trainingFormModel->approve_by = '0';
+        $trainingFormModel->approval_status = Config::get('constants.status_pending');
         $trainingFormModel->created_by = Auth::id();
 
         if ($trainingFormModel->save()) {
@@ -140,5 +143,27 @@ class TrainingFormController extends Controller
     {
         return \response()->json(TrainingForm::orderBy('id')->get() , 200);
         # code...
+    }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $trainingFindModel = TrainingForm::find($validatedData['orderId']);
+
+        $trainingFindModel->approve_by = Auth::id();
+        $trainingFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($trainingFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Training form status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 }

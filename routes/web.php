@@ -43,10 +43,13 @@ Route::resource('/employees' , 'Rback\Users\EmployeeController');
 
 //********************* Research ******************//
 Route::group(['prefix' => 'research'], function () {
+	Route::post('/research-task/change-status', 'Research\ResearchController@changeStatus');
 	Route::get('/research-task/datatable' , 'Research\ResearchController@datatable');
 	Route::resource('/research-task' , 'Research\ResearchController');
+	Route::post('/funders/change-status', 'Research\FunderController@changeStatus');
 	Route::get('/funders-datatable' , 'Research\FunderController@datatable');
 	Route::resource('/funders' , 'Research\FunderController');
+	Route::post('/training-form/change-status', 'Research\TrainingFormController@changeStatus');
 	Route::get('/training-form/datatable' , 'Research\TrainingFormController@datatable');
 	Route::resource('/training-form' , 'Research\TrainingFormController');
 });

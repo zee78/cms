@@ -8,6 +8,7 @@ use App\Http\Requests\StoreResearchTask;
 use App\Http\Requests\UpdateResearchTask;
 use App\Models\Research;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class ResearchController extends Controller
 {
     /**
@@ -54,6 +55,8 @@ class ResearchController extends Controller
         $researchModel->team_lead = $validatedData['team_lead'];
         $researchModel->team_members = $validatedData['team_members'];
         $researchModel->task_status = $validatedData['status'];
+        $researchModel->approve_by = '0';
+        $researchModel->approval_status = Config::get('constants.status_pending');
         $researchModel->status = '1';
         $researchModel->created_by = Auth::id();
         
@@ -148,5 +151,28 @@ class ResearchController extends Controller
     {
         return \response()->json(Research::orderBy('id')->get() , 200);
         # code...
+    }
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $researchFindModel = Research::find($validatedData['orderId']);
+
+        $researchFindModel->approve_by = Auth::id();
+        $researchFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($researchFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Research task status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+
+
     }
 }

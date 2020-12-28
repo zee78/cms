@@ -8,6 +8,7 @@ use App\Http\Requests\StoreFunder;
 use App\Http\Requests\UpdateFunder;
 use App\Models\Funder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 class FunderController extends Controller
 {
     /**
@@ -51,6 +52,8 @@ class FunderController extends Controller
         $funderModel->funder_status = $validatedData['status'];
         $funderModel->response = $validatedData['response'];
         $funderModel->status = '1';
+        $funderModel->approve_by = '0';
+        $funderModel->approval_status = Config::get('constants.status_pending');
         $funderModel->created_by = Auth::id();
 
         if ($funderModel->save()) {
@@ -123,7 +126,6 @@ class FunderController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
         $deleteData = Funder::find($id);
         if($deleteData->delete()){
             return response()->json(['status'=>'true' , 'message' => 'Funder data deleted successfully'] , 200);
@@ -137,5 +139,27 @@ class FunderController extends Controller
     {
         return \response()->json(Funder::orderBy('id')->get() , 200);
         # code...
+    }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $funderFindModel = Funder::find($validatedData['orderId']);
+
+        $funderFindModel->approve_by = Auth::id();
+        $funderFindModel->approval_status = $validatedData['orderStatus'];
+
+        if ($funderFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Funder status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 }
