@@ -21,5 +21,4 @@ io.on('connection', function (socket) {
         redisClient.quit();
         console.log('disconnect');
     });
-    
 });
