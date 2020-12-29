@@ -94,6 +94,7 @@ Route::group(['prefix' => 'consultancies'], function () {
 });
 //********************* CRO *********************//
 Route::group(['prefix' => 'cro'], function () {
+	Route::post('/project/change-status', 'CRO\ProjectController@changeStatus');
 	Route::get('/project/datatable', 'CRO\ProjectController@datatable');
 	Route::resource('/project', 'CRO\ProjectController');
 });

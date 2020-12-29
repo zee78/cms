@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCroProject;
+use App\Http\Requests\UpdateCroProject;
 use App\Models\CroProject;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\Config;
@@ -75,7 +76,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -86,7 +87,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = CroProject::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('cro/project-update' , compact('getSingleData'));
     }
 
     /**
@@ -96,9 +100,32 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCroProject $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = CroProject::find($id);
+
+        $findData->project_id = IdGenerator::generate(['table' => 'cro_projects', 'length' => 13, 'field' => 'project_id', 'prefix' => 'PROJ-']);
+        $findData->funder_id = $validatedData['funder_name'];
+        $findData->project_type = $validatedData['project_type'];
+        $findData->title = $validatedData['title'];
+        $findData->funder_type = $validatedData['funder_type'];
+        $findData->amount = $validatedData['amount'];
+        $findData->start_date = $validatedData['start_date'];
+        $findData->end_date = $validatedData['end_date'];
+        $findData->team_lead = $validatedData['team_lead'];
+        $findData->team_members = $validatedData['team_members'];
+        $findData->order_status = Config::get('constants.status_process');
+        $findData->status = '1';
+        $findData->created_by = Auth::id();
+
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Project data update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -109,7 +136,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        $deleteData = CROProject::find($id);
+        $deleteData = CroProject::find($id);
         if($deleteData->delete()){
             return response()->json(['status'=>'true' , 'message' => 'Cro Project data deleted successfully'] , 200);
 
@@ -118,9 +145,32 @@ class ProjectController extends Controller
 
         }
     }
+
+    public function changeStatus(Request $request)
+    {
+        // return $request->all();
+        $validatedData = $request->validate([
+            'orderStatus' =>'required',
+            'orderId' =>'required|numeric',
+        ]);
+
+        // return $validatedData;
+
+        $croFindModel = CroProject::find($validatedData['orderId']);
+
+        // $funderFindModel->approve_by = Auth::id();
+        $croFindModel->order_status = $validatedData['orderStatus'];
+
+        if ($croFindModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'Project status update successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
+    }
+
     public function datatable()
     {
-        return \response()->json(CROProject::with('funder')->orderBy('id')->get() , 200);
+        return \response()->json(CroProject::with('funder')->orderBy('id')->get() , 200);
         # code...
     }
 }

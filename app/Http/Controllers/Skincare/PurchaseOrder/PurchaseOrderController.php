@@ -119,7 +119,6 @@ class PurchaseOrderController extends Controller
         $findData->order_placed_by = $validatedData['placed_by'];
         $findData->order_date = $validatedData['date'];
         $findData->cost = $validatedData['cost'];
-        $findData->approve_by = '0';
         $findData->order_procurement_by = $validatedData['procurement_person'];
         $findData->order_receiving_date = $validatedData['receiving_date'];
         $findData->order_status = Config::get('constants.status_pending');

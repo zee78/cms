@@ -8,6 +8,7 @@ $.ajaxSetup({
 $(document).ready(()=>{
   
   $('#tblProject').DataTable({
+    
     responsive: true,
     ajax: {
            "url": "/cro/project/datatable",
@@ -30,7 +31,7 @@ $(document).ready(()=>{
           // console.log(row)
             return `
             <div class="glyph">
-                <a href="/research/funders/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
+                <a href="/cro/project/`+row.id+`/edit"> <i class="typcn typcn-edit"></i> </a>
                 <a class="modal-effect" data-effect="effect-scale" data-toggle="modal" href="#" onclick="deleteBatch('`+row.id+`')"> <i class="typcn typcn-trash"></i> </a>
             </div>
 
@@ -43,7 +44,7 @@ $(document).ready(()=>{
              return `
                      <select class="form-control select2" name="change_status" id="change_status" data-value="`+row.id+`" >
                           <option>Select Status</option> 
-                          <option value="PENDING">PENDING</option>              
+                          <option value="PROCESS">PROCESS</option>              
                           <option value="APPROVE">APPROVE</option>              
                   </select>
              `
@@ -69,7 +70,7 @@ $(document).ready(()=>{
      // console.log($(this).data("value"))
 
       $.ajax({
-        url: '/research/funders/change-status',
+        url: '/cro/project/change-status',
         type: 'POST',
         data: {orderStatus: this.value , orderId: $(this).data("value")},
         // contentType: false,
@@ -78,7 +79,7 @@ $(document).ready(()=>{
         success: (response)=>{
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
-              $('#tblFunder').DataTable().ajax.reload();
+              $('#tblProject').DataTable().ajax.reload();
 
             }else{
                 $.notify(response.message , 'error');
@@ -99,11 +100,11 @@ $(document).ready(()=>{
   $('#deleteData').on('submit' , function(event){
     event.preventDefault();
     var data = $("#deleteData").serialize();
-    $funderId = $("#funderId").val();
-    console.log($funderId)
+    $projectId = $("#projectId").val();
+    console.log($projectId)
 
        $.ajax({
-        url: '/research/funders/'+$funderId,
+        url: '/cro/project/'+$projectId,
         type: 'DELETE',
         data: data,
         processData: false,
@@ -113,7 +114,7 @@ $(document).ready(()=>{
             if (response.status == 'true') {
 
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/research/funders";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/cro/project";
 
             }else{
                 $.notify(response.message , 'error');
@@ -132,5 +133,5 @@ $(document).ready(()=>{
 });
 function deleteBatch(id) {
   $("#deleteModel").modal('show');
-  $("#funderId").val(id);
+  $("#projectId").val(id);
 }

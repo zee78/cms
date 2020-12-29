@@ -113,7 +113,6 @@ class ProjectController extends Controller
         $findData->order_status = Config::get('constants.status_process');
         $findData->status = '1';
         $findData->created_by = Auth::id();
-        dd($findData);
 
         if ($findData->save()) {
             return response()->json(['status'=>'true' , 'message' => 'community Project updated add successfully'] , 200);

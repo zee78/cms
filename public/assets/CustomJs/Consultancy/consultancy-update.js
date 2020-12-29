@@ -16,58 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-            // ************** select2 initlization ****************
-
-         $("#funder_name").select2({
-
-        // theme: "bootstrap",
-        // dir: direction,
-        allowClear: true,
-        placeholder: "Select a Funder",
-        "pagination": {
-        "more": true
-        },
-
-        // minimumResultsForSearch: Infinity,
-        // dropdownParent:$('#formContainer'),
-        // containerCssClass: ":all:",
-        ajax: {
-            url: "/research/funders/select2",
-            type: "get",
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                     searchTerm: params.term,
-                };
-            },
-            processResults: function (response) {
-                return {
-                    results: $.map(response, function (obj) {
-                        return {
-                            text: obj.funding_organization_name,
-                            id: obj.id
-                        }
-                    }),
-                }
-            },
-            cache: true
-        },
-
-        // formatResult: FormatResult,
-
-    });
-
-
-
-    // *****************date picker initilization *************
-
-    // Datepicker
-    $('.fc-datepicker').datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
         // ***************** letters only and allow space in a name only *********
 
         jQuery.validator.addMethod("lettersonly", function(value, element) {
@@ -77,64 +25,82 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#formCommunityAwrProjectUpdate").validate({
+      $("#formFormulationUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                project_name: {
+                formulation_name: {
                     required: true,
                     // lettersonly: true
                 },
-                team_lead: {
+                ingredient_name: {
                     required: true,
                     // lettersonly: true
                 },
-                team_members: {
+                quantity: {
                     required: true,
-                    // email: true
+                    number: true
                 },
-                start_date: {
+                equipment_used: {
                     required: true,
                     // number: true
                 },
-                end_date: {
+                procedure: {
                     required: true,
+                    // number: true
+                    
                 },
-                monthly_progress: {
+                container_used: {
                     required: true,
+                    // number: true,
                 },
-                
+                label_type_used: {
+                    required: true,
+                    // number: true,
+                },
+                pack_size: {
+                    required: true,
+                    // number: true,
+                }
 
 
             },
             messages: {
-                project_name: {
-                    required: "Please enter project name",
+                formulation_name: {
+                    required: "Please enter formulation name",
 
                 } ,
-                
-                monthly_progress: {
-                    required: "Please enter monthly prograss",
+                ingredient_name: {
+                    required: "Please enter ingredient name",
 
                 } ,
-                start_date: {
-                    required: "Please select start date",
+                quantity: {
+                    required: "Please enter quantity",
+                    number: "Please enter valid number",
 
                 } ,
-                end_date: {
-                    required: "Please select end date",
+                equipment_used: {
+                    required: "Please enter the name of equipment you used",
+                } ,
+                procedure: {
+                    required: "Please enter preocedure you perform",
 
                 } ,
-                team_lead: {
-                    required: "Please enter team lead",
+                container_used: {
+                    required: "Please enter the container you used ",
+
 
                 } ,
-                team_members: {
-                    required: "Please enter teams members",
+                label_type_used: {
+                    required: "Please enter the label type you used",
 
-                } ,
+                },
+                pack_size: {
+                    required: "Please enter the pack size",
+
+                }
 
             },
 
@@ -151,19 +117,23 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-var createFormData = $('#formCommunityAwrProjectUpdate').serialize();
-var id = $('#projectId').val();
+// console.log(formData)
+var createFormData = $('#formFormulationUpdate').serialize();
+var id = $('#formulationId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/community-awareness/project/'+id,
+        url: '/skincare/formulation/'+id,
         type: 'PATCH',
-        data: createFormData,
+        data: createFormData ,
         processData: false,
 
         success: (response)=>{
+            
             if (response.status == 'true') {
+
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/community-awareness/project/";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/formulation/";
+
             }else{
                 $.notify(response.message , 'error');
 

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('css')
 <!---DataTables css-->
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <link href="{{ URL::asset('assets/plugins/datatable/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/responsivebootstrap4.min.css')}}" rel="stylesheet">
 <link href="{{ URL::asset('assets/plugins/datatable/fileexport/buttons.bootstrap4.min.css')}}" rel="stylesheet">
@@ -48,6 +49,9 @@
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
+										@if(Auth::user()->hasRole('admin') || Auth::id() == '1')
+										<input type="hidden" id="role" value="admin">
+										@endif
 										<table class="table" id="tblProject">
 											<thead>
 												<tr>

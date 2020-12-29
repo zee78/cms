@@ -8,6 +8,7 @@ $.ajaxSetup({
 $(document).ready(()=>{
   
   $('#tblProject').DataTable({
+    
     responsive: true,
     ajax: {
            "url": "/community-awareness/project/datatable",

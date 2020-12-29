@@ -16,49 +16,6 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-        // ************** select2 initlization ****************
-
-         $("#vendor_name").select2({
-
-        // theme: "bootstrap",
-        // dir: direction,
-        allowClear: true,
-        placeholder: "Select a vedndor",
-        "pagination": {
-        "more": true
-        },
-
-        // minimumResultsForSearch: Infinity,
-        // dropdownParent:$('#formContainer'),
-        // containerCssClass: ":all:",
-        ajax: {
-            url: "/skincare/vendors/select2",
-            type: "get",
-            dataType: 'json',
-            delay: 250,
-            data: function (params) {
-                return {
-                     searchTerm: params.term,
-                };
-            },
-            processResults: function (response) {
-                return {
-                    results: $.map(response, function (obj) {
-                        return {
-                            text: obj.vendor_name,
-                            id: obj.id
-                        }
-                    }),
-                }
-            },
-            cache: true
-        },
-
-        // formatResult: FormatResult,
-
-    });
-
-
     // *****************date picker initilization *************
 
     // Datepicker
@@ -76,71 +33,82 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#updatePurchaseOrder").validate({
+      $("#formFormulationCreate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                vendor_type: {
+                formulation_name: {
                     required: true,
                     // lettersonly: true
                 },
-                placed_by: {
+                ingredient_name: {
                     required: true,
                     // lettersonly: true
                 },
-                date: {
-                    required: true,
-                    // email: true
-                },
-                vendor_name: {
+                quantity: {
                     required: true,
                     number: true
                 },
-                cost: {
+                equipment_used: {
                     required: true,
-                    number: true,
+                    // number: true
+                },
+                procedure: {
+                    required: true,
+                    // number: true
                     
                 },
-                procurement_person: {
+                container_used: {
                     required: true,
+                    // number: true,
                 },
-                receiving_date: {
+                label_type_used: {
                     required: true,
+                    // number: true,
                 },
+                pack_size: {
+                    required: true,
+                    // number: true,
+                }
 
 
             },
             messages: {
-                vendor_type: {
-                    required: "Please select vandor type",
+                formulation_name: {
+                    required: "Please enter formulation name",
 
                 } ,
-                placed_by: {
-                    required: "Please enter who placed the order",
+                ingredient_name: {
+                    required: "Please enter ingredient name",
 
                 } ,
-                date: {
-                    required: "Please enter order date",
+                quantity: {
+                    required: "Please enter quantity",
+                    number: "Please enter valid number",
 
                 } ,
-                vendor_name: {
-                    required: "Please select vendor_name",
-                    // number: "Please enter valid integer",
+                equipment_used: {
+                    required: "Please enter the name of equipment you used",
                 } ,
-                cost: {
-                    required: "Please enter team lead",
+                procedure: {
+                    required: "Please enter preocedure you perform",
 
                 } ,
-                procurement_person: {
-                    required: "Please enter procurement person",
+                container_used: {
+                    required: "Please enter the container you used ",
+
 
                 } ,
-                receiving_date: {
-                    required: "Please enter receiving date",
+                label_type_used: {
+                    required: "Please enter the label type you used",
 
-                } ,
+                },
+                pack_size: {
+                    required: "Please enter the pack size",
+
+                }
 
             },
 
@@ -157,20 +125,19 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-// var createFormData = new FormData (formData);
-var createFormData = $('#updatePurchaseOrder').serialize();
-var id = $('#purchaseId').val();
+var createFormData = new FormData (formData);
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/purchase-order/'+id,
-        type: 'PATCH',
+        url: '/skincare/formulation',
+        type: 'POST',
         data: createFormData,
+        contentType: false,
         processData: false,
 
         success: (response)=>{
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/purchase-order";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/formulation/";
             }else{
                 $.notify(response.message , 'error');
 

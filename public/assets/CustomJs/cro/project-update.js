@@ -16,14 +16,14 @@ $.ajaxSetup({
 $(document).ready(()=>{
 
 
-        // ************** select2 initlization ****************
+            // ************** select2 initlization ****************
 
-         $("#vendor_name").select2({
+         $("#funder_name").select2({
 
         // theme: "bootstrap",
         // dir: direction,
         allowClear: true,
-        placeholder: "Select a vedndor",
+        placeholder: "Select a Funder",
         "pagination": {
         "more": true
         },
@@ -32,7 +32,7 @@ $(document).ready(()=>{
         // dropdownParent:$('#formContainer'),
         // containerCssClass: ":all:",
         ajax: {
-            url: "/skincare/vendors/select2",
+            url: "/research/funders/select2",
             type: "get",
             dataType: 'json',
             delay: 250,
@@ -45,7 +45,7 @@ $(document).ready(()=>{
                 return {
                     results: $.map(response, function (obj) {
                         return {
-                            text: obj.vendor_name,
+                            text: obj.funding_organization_name,
                             id: obj.id
                         }
                     }),
@@ -57,6 +57,7 @@ $(document).ready(()=>{
         // formatResult: FormatResult,
 
     });
+
 
 
     // *****************date picker initilization *************
@@ -76,69 +77,82 @@ $(document).ready(()=>{
 
     // ********************* form validation ***********
 
-      $("#updatePurchaseOrder").validate({
+      $("#formCroProjectUpdate").validate({
 
         errorPlacement:function (error , element) {
           error.insertAfter(element.parents(".form-group"))
         },
             rules: {
-                vendor_type: {
+                project_type: {
                     required: true,
                     // lettersonly: true
                 },
-                placed_by: {
+                title: {
                     required: true,
                     // lettersonly: true
                 },
-                date: {
+                funder_type: {
                     required: true,
                     // email: true
                 },
-                vendor_name: {
+                funder_name: {
                     required: true,
-                    number: true
+                    // number: true
                 },
-                cost: {
+                amount: {
                     required: true,
-                    number: true,
                     
                 },
-                procurement_person: {
+                start_date: {
                     required: true,
                 },
-                receiving_date: {
+                end_date: {
+                    required: true,
+                },
+                team_lead: {
+                    required: true,
+                },
+                team_members: {
                     required: true,
                 },
 
 
             },
             messages: {
-                vendor_type: {
-                    required: "Please select vandor type",
+                project_type: {
+                    required: "Please select project type",
 
                 } ,
-                placed_by: {
-                    required: "Please enter who placed the order",
+                title: {
+                    required: "Please enter project title",
 
                 } ,
-                date: {
-                    required: "Please enter order date",
+                funder_type: {
+                    required: "Please select funder type",
 
                 } ,
-                vendor_name: {
-                    required: "Please select vendor_name",
+                funder_name: {
+                    required: "Please select funder name",
                     // number: "Please enter valid integer",
                 } ,
-                cost: {
+                amount: {
+                    required: "Please enter amount",
+
+                } ,
+                start_date: {
+                    required: "Please select start date",
+
+                } ,
+                end_date: {
+                    required: "Please select end date",
+
+                } ,
+                team_lead: {
                     required: "Please enter team lead",
 
                 } ,
-                procurement_person: {
-                    required: "Please enter procurement person",
-
-                } ,
-                receiving_date: {
-                    required: "Please enter receiving date",
+                team_members: {
+                    required: "Please enter teams members",
 
                 } ,
 
@@ -157,20 +171,20 @@ $(document).ready(()=>{
 
 function form_Create(formData) {
 //    let createFormData = $('#formCreate').serialize();
-// var createFormData = new FormData (formData);
-var createFormData = $('#updatePurchaseOrder').serialize();
-var id = $('#purchaseId').val();
+  var createFormData = $('#formCroProjectUpdate').serialize();
+  var id = $('#projectId').val();
     // console.log(createFormData);
     $.ajax({
-        url: '/skincare/purchase-order/'+id,
+        url: '/cro/project/'+id,
         type: 'PATCH',
         data: createFormData,
+        // contentType: false,
         processData: false,
 
         success: (response)=>{
             if (response.status == 'true') {
                 $.notify(response.message , 'success'  );
-                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/skincare/purchase-order";
+                window.location.href = window.location.protocol + '//' + window.location.hostname +":"+window.location.port+"/cro/project/";
             }else{
                 $.notify(response.message , 'error');
 

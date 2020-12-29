@@ -49,6 +49,7 @@
 										<!-- <p class="text-muted card-sub-title">Responsive is an extension for DataTables that resolves that problem by optimising the table's layout for different screen sizes through the dynamic insertion and removal of columns from the table.</p> -->
 									</div>
 									<div class="table-responsive">
+										
 										<table class="table" id="tblProject">
 											<thead>
 												<tr>
@@ -62,7 +63,7 @@
 													<th class="wd-25p">Monthly Progress</th>
 													<th class="wd-25p">Status</th>
 													<th class="wd-20p">Action</th>
-													<th class="wd-20p">status Change</th>
+													<th class="wd-20p">status Change </th>
 												</tr>
 											</thead>
 											<tbody>

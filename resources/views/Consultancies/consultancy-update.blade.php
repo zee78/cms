@@ -50,11 +50,11 @@
 										<option value="CIC">CIC</option>
 										<option value="PCP">PCP</option>
 										<option value=PEC">PEC</option>
-										<option value="Pharmacy Schools">Pharmacy Schools</option>
-										<option value="Product Registration">Product Registration</option>
-										<option value="Dossier Development">Dossier Development</option>
-										<option value="Pharmacy Franchise">Pharmacy Franchise</option>
-										<option value="Other">Other</option>
+										<option value="pharmacy_schools">Pharmacy Schools</option>
+										<option value="product_registration">Product Registration</option>
+										<option value="dossier_development">Dossier Development</option>
+										<option value="pharmacy_franchise">Pharmacy Franchise</option>
+										<option value="other">Other</option>
 									</select>
 								</div>
 								<!-- ****************** employee last name *************** -->
@@ -131,5 +131,5 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Consultancy/consultancy-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/Consultancy/consultancy-update.js'')}}"></script>
 @endsection
