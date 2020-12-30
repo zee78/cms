@@ -8,6 +8,7 @@ use App\Models\Equipment;
 use App\Http\Requests\StoreEquipment;
 use App\Http\Requests\UpdateEquipment;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class EquipmentController extends Controller
 {
@@ -18,6 +19,11 @@ class EquipmentController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare/Inventory/Equipment/equipments-list');
         
     }

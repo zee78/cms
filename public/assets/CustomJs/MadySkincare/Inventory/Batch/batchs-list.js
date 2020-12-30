@@ -1,6 +1,6 @@
 $(document).ready(()=>{
   
-  $('#tblBatch').DataTable({
+  var table = $('#tblBatch').DataTable({
 		responsive: true,
 		ajax: {
            "url": "/skincare/inventory/batch/datatable",
@@ -54,7 +54,11 @@ $(document).ready(()=>{
      },
      
 	});
-
+  // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(5).visible(false);
+    }
+  // *******************************************************************************
 
   // ******************** ******************************* confirm delete ajax **********************
 

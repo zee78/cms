@@ -1,6 +1,6 @@
 $(document).ready(()=>{
   
-  $('#tblFormulation').DataTable({
+  var table = $('#tblFormulation').DataTable({
     responsive: true,
     ajax: {
            "url": "/skincare/formulation/datatable",
@@ -51,6 +51,11 @@ $(document).ready(()=>{
      },
      
   });
+  // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(9).visible(false);
+    }
+   // *******************************************************************************
 
 // ******************** ******************************* confirm delete ajax **********************
 

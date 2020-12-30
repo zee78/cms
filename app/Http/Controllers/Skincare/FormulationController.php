@@ -8,6 +8,7 @@ use App\Http\Requests\StoreFormulation;
 use App\Http\Requests\UpdateFormulation;
 use App\Models\Formulation;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 class FormulationController extends Controller
 {
     /**
@@ -17,6 +18,11 @@ class FormulationController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare.Formulation.formulation-list');
 
     }

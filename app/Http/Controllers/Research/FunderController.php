@@ -10,6 +10,7 @@ use App\Models\Funder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use JavaScript;
 
 class FunderController extends Controller
 {
@@ -20,6 +21,11 @@ class FunderController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('research/Funders/funder-list');
         
     }

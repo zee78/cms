@@ -7,7 +7,7 @@ $.ajaxSetup({
 
 $(document).ready(()=>{
   
-  $('#tblResearchTask').DataTable({
+  var table = $('#tblResearchTask').DataTable({
     responsive: true,
     ajax: {
            "url": "/research/research-task/datatable",
@@ -63,6 +63,12 @@ $(document).ready(()=>{
      },
      
   });
+    // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(12).visible(false);
+        table.columns(13).visible(false);
+    }
+   // *******************************************************************************
 
 
       $(document).on("change", "select[name='change_status']", function(){

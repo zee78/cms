@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SKincare\Costing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use JavaScript;
 class CostingController extends Controller
 {
     /**

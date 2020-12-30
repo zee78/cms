@@ -8,6 +8,7 @@ use App\Models\GlassWare;
 use App\Http\Requests\StoreGlassWare;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateGlassWare;
+use JavaScript;
 
 class GlassWareController extends Controller
 {
@@ -18,6 +19,11 @@ class GlassWareController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare/Inventory/Glassware/glasswares-list');
         
     }

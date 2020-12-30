@@ -22,7 +22,7 @@ $(document).ready(()=>{
         //  { render : function(data, type, row , full) {
         //     return `
         //     <div class="glyph">
-        //         <a href="/roles/assign-permissions/`+row[0]+`"> <i class="glyph-icon iconsminds-tag primary"></i> </a>
+        //         <button onclick="chat('`+row.id+`')" class="btn btn-success"> <i class="glyph-icon iconsminds-tag primary"></i>Send Message </button>
         //     </div>
         //     `
         // }

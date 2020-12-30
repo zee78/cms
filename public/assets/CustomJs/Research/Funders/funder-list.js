@@ -7,7 +7,7 @@ $.ajaxSetup({
 
 $(document).ready(()=>{
   
-  $('#tblFunder').DataTable({
+  var table = $('#tblFunder').DataTable({
     responsive: true,
     ajax: {
            "url": "/research/funders-datatable",
@@ -60,7 +60,12 @@ $(document).ready(()=>{
      },
      
   });
-
+    // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(9).visible(false);
+        table.columns(10).visible(false);
+    }
+   // *******************************************************************************
     $(document).on("change", "select[name='change_status']", function(){
      // console.log(this.value);
      // console.log($(this).data("value"))

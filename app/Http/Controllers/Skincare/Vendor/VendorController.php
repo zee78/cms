@@ -8,6 +8,7 @@ use App\Models\Vendor;
 use App\Http\Requests\StoreVendor;
 use App\Http\Requests\UpdateVendor;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class VendorController extends Controller
 {
@@ -18,6 +19,11 @@ class VendorController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare.Vendors.vendors-list');
     }
 

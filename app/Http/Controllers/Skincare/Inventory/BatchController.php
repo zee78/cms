@@ -8,6 +8,7 @@ use App\Models\Batch;
 use App\Http\Requests\StoreBatch;
 use App\Http\Requests\UpdateBatch;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class BatchController extends Controller
 {
@@ -18,6 +19,11 @@ class BatchController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare/Inventory/Batch/batchs-list');
         
     }

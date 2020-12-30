@@ -1,6 +1,6 @@
 $(document).ready(()=>{
   
-  $('#tblChemical').DataTable({
+  var table = $('#tblChemical').DataTable({
 		responsive: true,
 		ajax: {
            "url": "/skincare/inventory/chemical/datatable",
@@ -70,7 +70,11 @@ $(document).ready(()=>{
      },
      
 	});
-
+  // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(11).visible(false);
+    }
+  // *******************************************************************************
 
   // ******************** ******************************* confirm delete ajax **********************
 

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreTrendAnalysis;
 use App\Http\Requests\UpdateTrendAnalysis;
 use App\Models\TrendAnalysis;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 class TrendAnalysisController extends Controller
 {
     /**
@@ -17,6 +18,11 @@ class TrendAnalysisController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare.TrendAnalysis.trend-analysis-list');
     }
 

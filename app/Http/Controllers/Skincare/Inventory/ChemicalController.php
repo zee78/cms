@@ -8,6 +8,7 @@ use App\Models\Chemical;
 use App\Http\Requests\StoreChemical;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateChemical;
+use JavaScript;
 
 class ChemicalController extends Controller
 {
@@ -18,6 +19,11 @@ class ChemicalController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare/Inventory/Chemicals/chemicals-list');
     }
 

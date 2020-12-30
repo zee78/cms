@@ -102,6 +102,7 @@ $(document).ready(()=>{
    // **************************** hide and display user data ***********************
 
    if (typeof role === 'undefined') {
+        table.columns(11).visible(false);
         table.columns(12).visible(false);
    }
 

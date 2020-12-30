@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateResearchTask;
 use App\Models\Research;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use JavaScript;
+
 class ResearchController extends Controller
 {
     /**
@@ -18,6 +20,11 @@ class ResearchController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('research.ResearchTask.research-task-list');
     }
 

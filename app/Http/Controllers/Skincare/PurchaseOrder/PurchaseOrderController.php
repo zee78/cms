@@ -23,7 +23,7 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->hasRole('admin') || Auth::user()->hasRole('HR') || Auth::id() == '1'){
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
             JavaScript::put([
             'role' => 'true',
            ]);

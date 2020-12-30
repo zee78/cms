@@ -1,6 +1,6 @@
 $(document).ready(()=>{
   
-  $('#tblEquipment').DataTable({
+  var table = $('#tblEquipment').DataTable({
 		responsive: true,
 		ajax: {
            "url": "/skincare/inventory/equipment/datatable",
@@ -59,6 +59,11 @@ $(document).ready(()=>{
      },
      
 	});
+  // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(9).visible(false);
+    }
+  // *******************************************************************************
 
   // ******************** ******************************* confirm delete ajax **********************
 

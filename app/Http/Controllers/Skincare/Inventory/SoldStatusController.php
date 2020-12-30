@@ -8,6 +8,7 @@ use App\Models\SoldStatus;
 use App\Http\Requests\StoreSoldStatus;
 use App\Http\Requests\UpdateSoldStatus;
 use Illuminate\Support\Facades\Auth;
+use JavaScript;
 
 class SoldStatusController extends Controller
 {
@@ -18,6 +19,11 @@ class SoldStatusController extends Controller
      */
     public function index()
     {
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('mady-skincare/Inventory/SoldStatus/sold-status-list');
         
     }

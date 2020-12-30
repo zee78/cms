@@ -9,6 +9,8 @@ use App\Http\Requests\UpdateTrainingForm;
 use App\Models\TrainingForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use JavaScript;
+
 class TrainingFormController extends Controller
 {
     /**
@@ -18,7 +20,11 @@ class TrainingFormController extends Controller
      */
     public function index()
     {
-        // return \View::make('research/training-form');
+        if(Auth::user()->hasRole('admin') || Auth::id() == '1'){
+            JavaScript::put([
+            'role' => 'true',
+           ]);
+        }
         return \View::make('research.TrainingForm.training-form-list'); 
     }
 

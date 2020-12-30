@@ -7,7 +7,7 @@ $.ajaxSetup({
 
 $(document).ready(()=>{
   
-  $('#tblProject').DataTable({
+  var table = $('#tblProject').DataTable({
     
     responsive: true,
     ajax: {
@@ -64,6 +64,13 @@ $(document).ready(()=>{
      },
      
   });
+
+    // **************************** hide and display user data ***********************
+    if (typeof role === 'undefined') {
+        table.columns(12).visible(false);
+        table.columns(13).visible(false);
+    }
+   // *******************************************************************************
 
     $(document).on("change", "select[name='change_status']", function(){
      // console.log(this.value);
