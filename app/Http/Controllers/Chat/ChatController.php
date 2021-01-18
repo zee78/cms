@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Chat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
+use App\Models\ChatMessages;
+use App\Models\ChatFriends;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ChatController extends Controller
 {
@@ -14,6 +18,15 @@ class ChatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+      $userid = Auth::id();
+      $userdata = User::where('id', $userid)->first();
+      // dd($userdata);
+
+      return \View::make('inbox')->with(compact('userdata'));
+    }
+
+    public function send(Request $request)
     {
         $type = 0;
       $file = $request->file('file');
@@ -67,7 +80,7 @@ class ChatController extends Controller
         'sender_image' => $request->input('sender_image'),
       ];
 
-      //dd($friendsdata);
+      // dd($friendsdata);
       $receiver_id = $request->input('receiver_id');
       $sender_id = $request->input('sender_id');
 
@@ -90,7 +103,7 @@ class ChatController extends Controller
             ]
         );
       }else{
-        return redirect('/user/messages');
+        return redirect('/inbox');
       }
 
     }
@@ -98,8 +111,8 @@ class ChatController extends Controller
 
     public function friendsList(Request $request, $id){
 
-      $getfriends = DB::table('chat_friends')->orWhere('sender_id',$id)->orWhere('receiver_id',$id)->get();
-      // dd($getfriends);
+      $getfriends = ChatFriends::orWhere('sender_id',$id)->orWhere('receiver_id',$id)->with('user')->get();
+       // dd($getfriends);
       return $getfriends;
 
     }

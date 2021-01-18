@@ -19,14 +19,14 @@ $(document).ready(()=>{
          { data: "user.contact" },
          { data: "date_of_birth" },
          { data: "address" },
-        //  { render : function(data, type, row , full) {
-        //     return `
-        //     <div class="glyph">
-        //         <button onclick="chat('`+row.id+`')" class="btn btn-success"> <i class="glyph-icon iconsminds-tag primary"></i>Send Message </button>
-        //     </div>
-        //     `
-        // }
-        //     },
+         { render : function(data, type, row , full) {
+            return `
+            <div class="glyph">
+                <button onclick="chat('`+row.id+`')" class="btn btn-success"> <i class="glyph-icon iconsminds-tag primary"></i>Send Message </button>
+            </div>
+            `
+        }
+            },
        //   { render : function(data, type, row) {
        //     return `
        //             <label class="custom-control custom-checkbox mb-1 align-self-center data-table-rows-check">

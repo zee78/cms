@@ -57,7 +57,7 @@
 													<th class="wd-20p">Contact</th>
 													<th class="wd-20p">Date of Birth</th>
 													<th class="wd-20p">Address</th>
-													<!-- <th class="wd-20p">Message</th> -->
+													<th class="wd-20p">Message</th>
 												</tr>
 											</thead>
 											<tbody>

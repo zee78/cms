@@ -7954,7 +7954,7 @@ a.button{
     position: relative;
 }
 
-.user-avatar.away:before,
+/*.user-avatar.away:before,
 .user-avatar.offline:before,
 .user-avatar.online:before {
     content: "";
@@ -7966,15 +7966,15 @@ a.button{
     top: 3px;
     left: -2px;
     z-index: 10;
-}
+}*/
 
-.user-avatar.online:before {
+/*.user-avatar.online:before {
     background-color: #1df377;
 }
 
 .user-avatar.offline:before {
     background-color: #f9515c;
-}
+}*/
 
 .user-avatar.away:before {
     background-color: #adafca;

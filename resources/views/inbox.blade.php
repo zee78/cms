@@ -38,7 +38,9 @@
 					<div class="row row-sm justify-content-center">
 						<div class="col-sm-12 col-xl-12 col-lg-12">
 							<div id="app">
-								<example-component></example-component>
+								<!-- {{$userdata}} -->
+								<example-component :userdata="{{$userdata}}"></example-component>
+								}
 							</div>
 						</div>
 						

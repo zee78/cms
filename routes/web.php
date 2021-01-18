@@ -106,10 +106,7 @@ Route::group(['prefix' => 'community-awareness'], function () {
 });
 
 // Chat
-Route::get('/inbox' , function(){
-	return view('inbox');
-});
-
+Route::resource('/inbox' , 'Chat\ChatController');
 // Route::get('/{page}', 'AdminController@index');
 Auth::routes();
 

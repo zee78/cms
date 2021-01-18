@@ -23,11 +23,11 @@
                         <div class="user-status-avatar">
                           <div class="user-avatar small no-outline">
                             <div class="user-avatar-content">
-                              <template v-if="friends.receiver_image != ''">
+                              <!-- <template v-if="friends.receiver_image != ''">
                                 <div class="hexagon-image-30-32" data-src="'/img/profileimage/'+friends.receiver_image"><img :src="'/img/profileimage/'+friends.receiver_image"></div> 
-                              </template>
-                              <template v-else>
-                                <div class="hexagon-image-30-32" data-src="'/img/user.png'"><img :src="'/img/user.png'"></div>
+                              </template> -->
+                              <template>
+                                <div class="hexagon-image-30-32" data-src="'assets/img/user.png'"><img :src="'assets/img/user.png'"></div>
                               </template>
                             </div>
                             <div class="user-avatar-progress">
@@ -43,7 +43,7 @@
                               <div class="user-avatar-badge-content">
                                 <div class="hexagon-dark-16-18"></div>
                               </div>
-                              <p class="user-avatar-badge-text">6</p>
+                              <!-- <p class="user-avatar-badge-text">6</p> -->
                             </div>
                           </div>
                         </div>
@@ -52,11 +52,11 @@
                         <div class="user-status-avatar">
                           <div class="user-avatar small no-outline">
                             <div class="user-avatar-content">
-                              <template v-if="friends.sender_image != ''">
+                              <!-- <template v-if="friends.sender_image != ''">
                                 <div class="hexagon-image-30-32" data-src="'/img/profileimage/'+friends.sender_image"><img :src="'/img/profileimage/'+friends.sender_image"></div>
-                              </template>
-                              <template v-else>
-                                <div class="hexagon-image-30-32" data-src="'/img/user.png'"><img :src="'/img/user.png'"></div>
+                              </template> -->
+                              <template>
+                                <div class="hexagon-image-30-32" data-src="'assets/img/user.png'"><img :src="'assets/img/user.png'"></div>
                               </template>
                             </div>
                             <div class="user-avatar-progress">
@@ -72,7 +72,7 @@
                               <div class="user-avatar-badge-content">
                                 <div class="hexagon-dark-16-18"></div>
                               </div>
-                              <p class="user-avatar-badge-text">6</p>
+                              <!-- <p class="user-avatar-badge-text">6</p> -->
                             </div>
                           </div>
                         </div>
@@ -142,11 +142,11 @@
                   <div class="user-status-avatar">
                     <div class="user-avatar small no-outline online">
                       <div class="user-avatar-content">
-                        <template v-if="friendImage != ''">
+                        <!-- <template v-if="friendImage != ''">
                           <div class="hexagon-image-30-32" data-src="'/img/profileimage/'+friendImage"><img :src="'/img/profileimage/'+friendImage"></div>
-                        </template>
-                        <template v-else>
-                        <div class="hexagon-image-30-32" data-src="'/img/user.png'"><img :src="'/img/user.png'"></div>
+                        </template> -->
+                        <template>
+                        <div class="hexagon-image-30-32" data-src="'assets/img/user.png'"><img :src="'assets/img/user.png'"></div>
                         </template>
                       </div>
                       <div class="user-avatar-progress">
@@ -162,12 +162,12 @@
                         <div class="user-avatar-badge-content">
                           <div class="hexagon-dark-16-18"></div>
                         </div>
-                        <p class="user-avatar-badge-text">16</p>
+                        <!-- <p class="user-avatar-badge-text">16</p> -->
                       </div>
                     </div>
                   </div>
                   <p class="user-status-title"><span class="bold">{{friendName}}</span></p>
-                  <p class="user-status-tag online">Online</p>
+                  <!-- <p class="user-status-tag online">Online</p> -->
                 </div>
               </div>
               <!-- /CHAT WIDGET HEADER -->
@@ -377,7 +377,7 @@
             friendlist: function(){
               axios.get('http://localhost:8000/api/friendsList/'+this.userr)
                .then(responce => {
-                // console.log(responce.data);
+                 console.log(responce.data);
                this.friendList = responce.data;
                console.log(this.friendList);
               })
@@ -462,7 +462,7 @@
               // console.log(obj);
               // socket.emit('message', obj);
               
-                  axios.post('http://localhost:8000/user/chat/send-message',meetingformDatas,config)
+                  axios.post('http://localhost:8000/api/send-message',meetingformDatas,config)
                    .then(responce => {
                     this.singleChate.push(obj);
                     var height = 0;

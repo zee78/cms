@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/send-message', 'Chat\ChatController@send');
 Route::post('friends','Chat\ChatController@friends');
 Route::get('friendsList/{id}','Chat\ChatController@friendsList');
 Route::post('singleChat','Chat\ChatController@singleChat');

@@ -34,7 +34,7 @@
 					
 				</div>
 				<div class="mt-3 mb-3">
-					<form  id="formCreate">
+					<form  id="formCostingCreate">
 						@csrf
 						<div class="">
 							<div class="row">
@@ -99,7 +99,7 @@
 								</div>
 								<div class="col-lg-6 form-group">
 									<label class="form-label">Profit %age: <span class="tx-danger">*</span></label>
-									<input class="form-control" name="Profit_percentage" placeholder="Profit %age" required="" type="text">
+									<input class="form-control" name="profit_percentage" placeholder="Profit %age" required="" type="text">
 								</div>
 							</div>
 							<div class="row">
@@ -139,5 +139,5 @@
 <!-- Jquery-Ui js-->
 <script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 <!-- ********************** custom js file here *********************** -->
-<script src="{{ URL::asset('assets/CustomJs/Rback/Users/employee-create.js')}}"></script>
+<script src="{{ URL::asset('assets/CustomJs/MadySkincare/Costing/costing-create.js')}}"></script>
 @endsection

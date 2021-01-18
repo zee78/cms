@@ -2371,7 +2371,7 @@ Vue.use(vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1___default.a);
       var _this = this;
 
       axios.get('http://localhost:8000/api/friendsList/' + this.userr).then(function (responce) {
-        // console.log(responce.data);
+        console.log(responce.data);
         _this.friendList = responce.data;
         console.log(_this.friendList);
       });
@@ -2456,7 +2456,7 @@ Vue.use(vue_emoji_picker__WEBPACK_IMPORTED_MODULE_1___default.a);
       // console.log(obj);
       // socket.emit('message', obj);
 
-      axios.post('http://localhost:8000/user/chat/send-message', meetingformDatas, config).then(function (responce) {
+      axios.post('http://localhost:8000/api/send-message', meetingformDatas, config).then(function (responce) {
         _this3.singleChate.push(obj);
 
         var height = 0;
@@ -68981,50 +68981,27 @@ var render = function() {
                                                     "user-avatar-content"
                                                 },
                                                 [
-                                                  friends.receiver_image != ""
-                                                    ? [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "hexagon-image-30-32",
-                                                            attrs: {
-                                                              "data-src":
-                                                                "'/img/profileimage/'+friends.receiver_image"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  "/img/profileimage/" +
-                                                                  friends.receiver_image
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "hexagon-image-30-32",
+                                                        attrs: {
+                                                          "data-src":
+                                                            "'assets/img/user.png'"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src:
+                                                              "assets/img/user.png"
+                                                          }
+                                                        })
                                                       ]
-                                                    : [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "hexagon-image-30-32",
-                                                            attrs: {
-                                                              "data-src":
-                                                                "'/img/user.png'"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  "/img/user.png"
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
-                                                      ]
+                                                    )
+                                                  ]
                                                 ],
                                                 2
                                               ),
@@ -69058,50 +69035,27 @@ var render = function() {
                                                     "user-avatar-content"
                                                 },
                                                 [
-                                                  friends.sender_image != ""
-                                                    ? [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "hexagon-image-30-32",
-                                                            attrs: {
-                                                              "data-src":
-                                                                "'/img/profileimage/'+friends.sender_image"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  "/img/profileimage/" +
-                                                                  friends.sender_image
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
+                                                  [
+                                                    _c(
+                                                      "div",
+                                                      {
+                                                        staticClass:
+                                                          "hexagon-image-30-32",
+                                                        attrs: {
+                                                          "data-src":
+                                                            "'assets/img/user.png'"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("img", {
+                                                          attrs: {
+                                                            src:
+                                                              "assets/img/user.png"
+                                                          }
+                                                        })
                                                       ]
-                                                    : [
-                                                        _c(
-                                                          "div",
-                                                          {
-                                                            staticClass:
-                                                              "hexagon-image-30-32",
-                                                            attrs: {
-                                                              "data-src":
-                                                                "'/img/user.png'"
-                                                            }
-                                                          },
-                                                          [
-                                                            _c("img", {
-                                                              attrs: {
-                                                                src:
-                                                                  "/img/user.png"
-                                                              }
-                                                            })
-                                                          ]
-                                                        )
-                                                      ]
+                                                    )
+                                                  ]
                                                 ],
                                                 2
                                               ),
@@ -69257,44 +69211,22 @@ var render = function() {
                               "div",
                               { staticClass: "user-avatar-content" },
                               [
-                                _vm.friendImage != ""
-                                  ? [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "hexagon-image-30-32",
-                                          attrs: {
-                                            "data-src":
-                                              "'/img/profileimage/'+friendImage"
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            attrs: {
-                                              src:
-                                                "/img/profileimage/" +
-                                                _vm.friendImage
-                                            }
-                                          })
-                                        ]
-                                      )
+                                [
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "hexagon-image-30-32",
+                                      attrs: {
+                                        "data-src": "'assets/img/user.png'"
+                                      }
+                                    },
+                                    [
+                                      _c("img", {
+                                        attrs: { src: "assets/img/user.png" }
+                                      })
                                     ]
-                                  : [
-                                      _c(
-                                        "div",
-                                        {
-                                          staticClass: "hexagon-image-30-32",
-                                          attrs: {
-                                            "data-src": "'/img/user.png'"
-                                          }
-                                        },
-                                        [
-                                          _c("img", {
-                                            attrs: { src: "/img/user.png" }
-                                          })
-                                        ]
-                                      )
-                                    ]
+                                  )
+                                ]
                               ],
                               2
                             ),
@@ -69312,10 +69244,6 @@ var render = function() {
                         _c("span", { staticClass: "bold" }, [
                           _vm._v(_vm._s(_vm.friendName))
                         ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", { staticClass: "user-status-tag online" }, [
-                        _vm._v("Online")
                       ])
                     ])
                   ]),
@@ -69935,9 +69863,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "user-avatar-badge-content" }, [
         _c("div", { staticClass: "hexagon-dark-16-18" })
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "user-avatar-badge-text" }, [_vm._v("6")])
+      ])
     ])
   },
   function() {
@@ -69967,9 +69893,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "user-avatar-badge-content" }, [
         _c("div", { staticClass: "hexagon-dark-16-18" })
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "user-avatar-badge-text" }, [_vm._v("6")])
+      ])
     ])
   },
   function() {
@@ -70007,9 +69931,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "user-avatar-badge-content" }, [
         _c("div", { staticClass: "hexagon-dark-16-18" })
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "user-avatar-badge-text" }, [_vm._v("16")])
+      ])
     ])
   }
 ]

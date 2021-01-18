@@ -4,6 +4,10 @@ namespace App\Http\Controllers\SKincare\Costing;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Costing;
+use App\Http\Requests\StoreCosting;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateCosting;
 use JavaScript;
 class CostingController extends Controller
 {
@@ -33,9 +37,34 @@ class CostingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCosting $request)
     {
-        //
+        $validatedData = $request->validated();
+
+        $costingModel = new Costing();
+
+        $costingModel->product_name = $validatedData['product_name'];
+        $costingModel->ingredient_name = $validatedData['ingredient_name'];
+        $costingModel->quantity_used = $validatedData['quantity_used'];
+        $costingModel->container_name = $validatedData['container_name'];
+        $costingModel->container_cost = $validatedData['container_cost'];
+        $costingModel->sticker_cost = $validatedData['sticker_cost'];
+        $costingModel->box_cost = $validatedData['box_cost'];
+        $costingModel->bag_cost = $validatedData['bag_cost'];
+        $costingModel->total_direct_cost = $validatedData['total_direct_cost'];
+        $costingModel->gst = $validatedData['gst'];
+        $costingModel->marketing_cost = $validatedData['marketing_cost'];
+        $costingModel->profit_percentage = $validatedData['profit_percentage'];
+        $costingModel->profit_amount = $validatedData['profit_amount'];
+        $costingModel->market_retail_price = $validatedData['market_retail_price'];
+        $costingModel->status = '1';
+
+
+        if ($costingModel->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'costing data add successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
@@ -57,7 +86,10 @@ class CostingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getSingleData = Costing::find($id);
+        // return $getSingleData->id;
+
+        return \View::make('mady-skincare/Costing/costing-update' , compact('getSingleData'));
     }
 
     /**
