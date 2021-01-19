@@ -99,9 +99,34 @@ class CostingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCosting $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+
+        $findData = Costing::find($id);
+        
+        $findData->product_name = $validatedData['product_name'];
+        $findData->ingredient_name = $validatedData['ingredient_name'];
+        $findData->quantity_used = $validatedData['quantity_used'];
+        $findData->container_name = $validatedData['container_name'];
+        $findData->container_cost = $validatedData['container_cost'];
+        $findData->sticker_cost = $validatedData['sticker_cost'];
+        $findData->box_cost = $validatedData['box_cost'];
+        $findData->bag_cost = $validatedData['bag_cost'];
+        $findData->total_direct_cost = $validatedData['total_direct_cost'];
+        $findData->gst = $validatedData['gst'];
+        $findData->marketing_cost = $validatedData['marketing_cost'];
+        $findData->profit_percentage = $validatedData['profit_percentage'];
+        $findData->profit_amount = $validatedData['profit_amount'];
+        $findData->market_retail_price = $validatedData['market_retail_price'];
+        $findData->status = '1';
+
+
+        if ($findData->save()) {
+            return response()->json(['status'=>'true' , 'message' => 'costing data updated successfully'] , 200);
+        }else{
+             return response()->json(['status'=>'errorr' , 'message' => 'error occured please try again'] , 200);
+        }
     }
 
     /**
